@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BITRA — Consultoría tecnológica ejecutiva</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+
+<style>
+:root{
+  --ink:#0B0B0D; --carbon:#141418; --graphite:#1E1F24; --steel:#2A2C33;
+  --slate:#3F424A; --mist:#7A7D86; --fog:#B4B6BD; --bone:#F2EEE5; --paper:#FAFAF7;
+  --voltage:#1F6478; --voltage-d:#14495A; --voltage-l:#4FA0B5;
+  --rule-dark:rgba(255,255,255,0.10); --rule-light:rgba(11,11,13,0.12);
+  --f-sans:"Geist", system-ui, sans-serif;
+  --f-serif:"Instrument Serif", Georgia, serif;
+  --f-mono:"Geist Mono", ui-monospace, monospace;
+  --mx: clamp(24px, 5vw, 96px);
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html,body{ background:var(--ink); color:var(--bone); font-family:var(--f-sans); -webkit-font-smoothing:antialiased; font-feature-settings:"ss01","cv11"; }
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+::selection{ background:var(--voltage); color:var(--bone); }
+
+/* ============== TYPE ============== */
+.mono{ font-family:var(--f-mono); letter-spacing:0.08em; text-transform:uppercase; font-size:12px; }
+.serif{ font-family:var(--f-serif); font-weight:400; }
+.italic{ font-family:var(--f-serif); font-style:italic; font-weight:400; }
+.eyebrow{
+  font-family:var(--f-mono); font-size:12px; letter-spacing:0.18em;
+  text-transform:uppercase; color:var(--voltage-l);
+  display:inline-flex; align-items:center; gap:10px;
+}
+.eyebrow::before{
+  content:""; display:inline-block; width:6px; height:6px;
+  background:var(--voltage-l); border-radius:99px;
+}
+.h-display{
+  font-family:var(--f-sans); font-weight:500; letter-spacing:-0.025em;
+  font-size: clamp(48px, 8.4vw, 148px); line-height:0.96;
+}
+.h1{ font-size: clamp(36px, 4.4vw, 72px); line-height:1.02; letter-spacing:-0.02em; font-weight:500; }
+.h2{ font-size: clamp(28px, 3vw, 48px); line-height:1.08; letter-spacing:-0.015em; font-weight:500; }
+.h3{ font-size: clamp(22px, 1.6vw, 28px); line-height:1.2; letter-spacing:-0.01em; font-weight:500; }
+.lede{ font-size: clamp(17px, 1.25vw, 22px); line-height:1.5; color:var(--fog); font-weight:400; }
+.body{ font-size:16px; line-height:1.6; color:var(--fog); }
+.label{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--mist); }
+
+.txt-mist{ color:var(--mist); } .txt-fog{ color:var(--fog); } .txt-bone{ color:var(--bone); } .txt-ink{ color:var(--ink); }
+.txt-volt{ color:var(--voltage-l); }
+
+/* ============== NAV ============== */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  padding: 20px var(--mx);
+  display:flex; align-items:center; justify-content:space-between;
+  font-family:var(--f-mono); font-size:13px;
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  background: rgba(11,11,13,0.55);
+  border-bottom: 1px solid var(--rule-dark);
+  transition: background .3s ease, border-color .3s ease;
+}
+.nav.scrolled{ background: rgba(11,11,13,0.82); }
+.nav .brand{ display:flex; align-items:center; gap:10px; letter-spacing:0.16em; text-transform:uppercase; font-weight:500; }
+.nav .brand .dot{ width:8px; height:8px; border-radius:99px; background:var(--voltage-l); }
+.nav .links{ display:flex; gap:32px; }
+.nav .links a{ color:var(--fog); letter-spacing:0.1em; text-transform:uppercase; transition:color .2s; }
+.nav .links a:hover{ color:var(--bone); }
+.nav .cta{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:10px 18px; border:1px solid var(--rule-dark);
+  background:transparent; color:var(--bone);
+  letter-spacing:0.1em; text-transform:uppercase; font-size:12px;
+  transition:all .2s ease;
+}
+.nav .cta:hover{ background:var(--voltage); border-color:var(--voltage); }
+.nav .cta .arr{ font-family:var(--f-serif); font-style:italic; }
+@media (max-width: 780px){ .nav .links{ display:none; } }
+
+/* ============== HERO ============== */
+.hero{
+  position:relative; min-height:100vh; padding: 0 var(--mx);
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding-bottom:96px; padding-top:160px;
+  overflow:hidden;
+}
+.hero canvas{
+  position:absolute; inset:0; width:100%; height:100%;
+  z-index:0;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 65%, rgba(0,0,0,0.4) 100%);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 65%, rgba(0,0,0,0.4) 100%);
+}
+.hero::before{
+  content:""; position:absolute; inset:0; z-index:1;
+  background:
+    radial-gradient(60% 50% at 80% 20%, rgba(31,100,120,0.18) 0%, transparent 60%),
+    radial-gradient(50% 40% at 20% 80%, rgba(79,160,181,0.10) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-content{ position:relative; z-index:2; }
+.hero-meta{
+  display:flex; gap:48px; flex-wrap:wrap; margin-bottom: 48px;
+  border-top:1px solid var(--rule-dark); padding-top:32px;
+}
+.hero-meta > div{ display:flex; flex-direction:column; gap:6px; }
+.hero-meta .v{ font-family:var(--f-serif); font-style:italic; font-size:32px; color:var(--bone); line-height:1; }
+.hero-headline{ max-width:1400px; }
+.hero-headline .line{ display:block; }
+.hero-tag{
+  display:inline-flex; align-items:center; gap:14px;
+  padding: 8px 14px 8px 8px;
+  background: rgba(31,100,120,0.14);
+  border:1px solid rgba(79,160,181,0.32);
+  color:var(--voltage-l);
+  font-family:var(--f-mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase;
+  margin-bottom:28px;
+}
+.hero-tag::before{
+  content:""; width:18px; height:18px; border-radius:99px;
+  background: radial-gradient(circle, var(--voltage-l) 0%, transparent 70%);
+  display:inline-block;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{ opacity:.55; transform:scale(0.92); }
+  50%{ opacity:1; transform:scale(1.1); }
+}
+.hero-sub{
+  margin-top:36px; max-width:560px; color:var(--fog);
+  font-size: clamp(16px, 1.2vw, 19px); line-height:1.55;
+}
+.hero-actions{ display:flex; gap:18px; flex-wrap:wrap; margin-top:42px; }
+.btn{
+  display:inline-flex; align-items:center; gap:12px;
+  padding:16px 26px; border-radius:0;
+  font-family:var(--f-mono); font-size:12px; letter-spacing:0.16em; text-transform:uppercase;
+  transition: all .25s ease; cursor:pointer; border:1px solid transparent;
+}
+.btn-primary{ background:var(--voltage); color:var(--bone); }
+.btn-primary:hover{ background:var(--voltage-d); transform:translateY(-1px); }
+.btn-ghost{ border-color:var(--rule-dark); color:var(--bone); background:transparent; }
+.btn-ghost:hover{ border-color:var(--voltage-l); color:var(--voltage-l); }
+.btn .arr{ font-family:var(--f-serif); font-style:italic; font-size:18px; line-height:1; text-transform:none; letter-spacing:0; }
+
+.scroll-cue{
+  position:absolute; bottom: 36px; left: var(--mx);
+  z-index:3; display:flex; align-items:center; gap:14px;
+  color:var(--mist); font-family:var(--f-mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase;
+}
+.scroll-cue::after{
+  content:""; width:60px; height:1px; background:var(--mist); position:relative; overflow:hidden;
+}
+.scroll-cue::before{
+  content:"↓"; font-family:var(--f-serif); font-style:italic; font-size:18px;
+  animation: bob 1.8s ease-in-out infinite;
+}
+@keyframes bob{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(4px); } }
+
+/* ============== SECTIONS ============== */
+section{ padding: 140px var(--mx); position:relative; }
+.section-head{
+  display:grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  margin-bottom: 96px; align-items:end;
+}
+@media (max-width: 920px){ .section-head{ grid-template-columns:1fr; gap:32px; } }
+.section-head .lede{ max-width:520px; }
+
+/* ============== MANIFIESTO ============== */
+.manifiesto{ background:var(--bone); color:var(--ink); padding-top:160px; padding-bottom:160px; }
+.manifiesto .quote{
+  font-family:var(--f-serif); font-weight:400;
+  font-size: clamp(36px, 5.2vw, 92px);
+  line-height:1.06; letter-spacing:-0.015em;
+  max-width: 1500px;
+}
+.manifiesto .quote .em{ font-style:italic; }
+.manifiesto .quote .accent{ color:var(--voltage); font-style:italic; }
+.manifiesto .sig{
+  margin-top: 80px; display:flex; align-items:baseline; justify-content:space-between; gap:32px;
+  border-top:1px solid var(--rule-light); padding-top:32px;
+  font-family:var(--f-mono); font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:#4A4D55;
+}
+.manifiesto .sig .author{ color:var(--ink); }
+
+/* ============== METRICS BAR ============== */
+.metrics{ background:var(--ink); padding: 80px var(--mx); border-top:1px solid var(--rule-dark); border-bottom:1px solid var(--rule-dark); }
+.metrics-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:48px; }
+@media (max-width: 920px){ .metrics-grid{ grid-template-columns:repeat(2,1fr); } }
+.metric{ display:flex; flex-direction:column; gap:10px; }
+.metric .n{ font-family:var(--f-serif); font-style:italic; font-size: clamp(44px, 4vw, 72px); line-height:1; color:var(--voltage-l); }
+.metric .l{ color:var(--fog); font-size:14px; }
+.metric .k{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--mist); }
+
+/* ============== CAPACIDADES ============== */
+.cap-list{ display:flex; flex-direction:column; }
+.cap-row{
+  display:grid; grid-template-columns: 80px 1.4fr 1fr 140px;
+  gap: 32px; padding: 28px 0; align-items:center;
+  border-top:1px solid var(--rule-dark);
+  position:relative; cursor:pointer;
+  transition: padding .35s ease;
+}
+.cap-row:last-child{ border-bottom:1px solid var(--rule-dark); }
+.cap-row::before{
+  content:""; position:absolute; left:0; right:0; top:0; bottom:0;
+  background: linear-gradient(90deg, rgba(31,100,120,0.06) 0%, transparent 40%);
+  opacity:0; transition:opacity .3s ease;
+}
+.cap-row:hover{ padding-left: 16px; }
+.cap-row:hover::before{ opacity:1; }
+.cap-row:hover .arr{ transform:translateX(8px); color:var(--voltage-l); }
+.cap-row .num{ font-family:var(--f-mono); font-size:13px; color:var(--mist); position:relative; z-index:1; }
+.cap-row .name{ font-size: clamp(22px, 1.8vw, 32px); line-height:1.15; letter-spacing:-0.01em; font-weight:500; position:relative; z-index:1; }
+.cap-row .desc{ color:var(--fog); font-size:15px; line-height:1.5; position:relative; z-index:1; }
+.cap-row .arr{ font-family:var(--f-serif); font-style:italic; font-size:32px; color:var(--mist); text-align:right; transition:all .3s ease; position:relative; z-index:1; }
+@media (max-width: 920px){
+  .cap-row{ grid-template-columns: 60px 1fr; gap:8px 24px; }
+  .cap-row .desc, .cap-row .arr{ grid-column: 2; }
+}
+
+/* ============== BITRA OS ============== */
+.os{ background:var(--carbon); padding-top:160px; padding-bottom:160px; position:relative; overflow:hidden; }
+.os::before{
+  content:""; position:absolute; inset:0;
+  background-image:
+    linear-gradient(var(--rule-dark) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule-dark) 1px, transparent 1px);
+  background-size: 120px 120px;
+  opacity:0.5; pointer-events:none;
+}
+.os > *{ position:relative; z-index:1; }
+.os-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--rule-dark); border:1px solid var(--rule-dark); margin-top:40px; }
+@media (max-width: 920px){ .os-grid{ grid-template-columns:1fr 1fr; } }
+.os-card{
+  background:var(--carbon); padding: 40px 32px 48px; min-height:300px;
+  display:flex; flex-direction:column; gap:14px; position:relative;
+  transition: background .3s ease;
+}
+.os-card:hover{ background: #1A1C21; }
+.os-card .k{ display:flex; justify-content:space-between; align-items:center; }
+.os-card .step{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.18em; color:var(--voltage-l); }
+.os-card .num{ font-family:var(--f-serif); font-style:italic; font-size:64px; line-height:1; color:var(--bone); opacity:0.55; }
+.os-card h4{ font-size: clamp(22px, 1.6vw, 28px); font-weight:500; letter-spacing:-0.01em; line-height:1.15; margin-top:auto; }
+.os-card p{ color:var(--fog); font-size:14px; line-height:1.55; }
+
+/* ============== CASOS ============== */
+.casos{ background:var(--bone); color:var(--ink); padding-top:160px; padding-bottom:160px; }
+.casos .label, .casos .mono, .casos .eyebrow{ color:#4A4D55; }
+.casos .eyebrow{ color:var(--voltage); }
+.casos .eyebrow::before{ background:var(--voltage); }
+.caso-feature{
+  background:var(--ink); color:var(--bone); padding: 64px;
+  display:grid; grid-template-columns: 1.2fr 1fr; gap:64px;
+  align-items:end; margin-bottom:24px;
+}
+@media (max-width: 920px){ .caso-feature{ grid-template-columns:1fr; padding:32px; gap:40px; } }
+.caso-feature .big{
+  font-family:var(--f-serif); font-style:italic;
+  font-size: clamp(96px, 13vw, 220px); line-height:0.9; color:var(--voltage-l);
+}
+.caso-feature .big sup{ font-size:0.4em; vertical-align:0.7em; font-style:italic; }
+.caso-feature h3{ font-size:32px; font-weight:500; letter-spacing:-0.01em; line-height:1.1; color:var(--bone); margin-bottom:14px; }
+.caso-feature .desc{ color:var(--fog); font-size:15px; line-height:1.55; }
+.caso-feature .kpis{ display:flex; gap:32px; margin-top:32px; border-top:1px solid var(--rule-dark); padding-top:24px; }
+.caso-feature .kpi .k{ font-family:var(--f-mono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--mist); display:block; margin-bottom:8px;}
+.caso-feature .kpi .n{ font-family:var(--f-serif); font-style:italic; font-size:48px; color:var(--bone); line-height:1; }
+.caso-minor-row{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+@media (max-width: 920px){ .caso-minor-row{ grid-template-columns:1fr; } }
+.caso-minor{
+  background:var(--paper); border:1px solid var(--rule-light);
+  padding: 40px; display:flex; flex-direction:column; gap:18px;
+}
+.caso-minor .head{ display:flex; justify-content:space-between; font-family:var(--f-mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#4A4D55; }
+.caso-minor .n{ font-size: clamp(44px, 4vw, 72px); font-weight:500; letter-spacing:-0.02em; line-height:1; color:var(--ink); }
+.caso-minor .l{ color:#4A4D55; font-size:14px; }
+.caso-minor .desc{ color:#4A4D55; font-size:14px; line-height:1.55; }
+
+/* ============== VISION ============== */
+.vision{ padding-top:180px; padding-bottom:180px; position:relative; overflow:hidden; }
+.vision::after{
+  content:""; position:absolute; inset:auto -10% -40% -10%; height:80%;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(31,100,120,0.25) 0%, transparent 70%);
+  filter: blur(40px); pointer-events:none;
+}
+.vision h2{ max-width: 1200px; position:relative; z-index:1; }
+.vision-cols{ display:grid; grid-template-columns:repeat(3,1fr); gap: 56px; margin-top:96px; position:relative; z-index:1; }
+@media (max-width: 920px){ .vision-cols{ grid-template-columns:1fr; gap:32px; } }
+.v-card{ border-top:1px solid var(--rule-dark); padding-top:28px; display:flex; flex-direction:column; gap:14px; }
+.v-card .y{ font-family:var(--f-mono); font-size:12px; letter-spacing:0.16em; color:var(--voltage-l); }
+.v-card h4{ font-size: clamp(22px, 1.6vw, 28px); font-weight:500; line-height:1.18; letter-spacing:-0.01em; }
+.v-card p{ color:var(--fog); font-size:15px; line-height:1.55; }
+
+/* ============== CTA ============== */
+.cta-block{
+  background:var(--bone); color:var(--ink);
+  padding: 120px var(--mx);
+  display:grid; grid-template-columns: 1.4fr 1fr; gap: 80px; align-items:end;
+}
+@media (max-width: 920px){ .cta-block{ grid-template-columns:1fr; gap:40px; padding:80px var(--mx); } }
+.cta-block h2{ letter-spacing:-0.02em; }
+.cta-block h2 .accent{ font-family:var(--f-serif); font-style:italic; color:var(--voltage); font-weight:400; }
+.cta-block .meta{ display:flex; flex-direction:column; gap:24px; }
+.cta-block .meta .row{ display:grid; grid-template-columns: 140px 1fr; gap:20px; padding:18px 0; border-top:1px solid var(--rule-light); }
+.cta-block .meta .row:last-child{ border-bottom:1px solid var(--rule-light); }
+.cta-block .meta .k{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#4A4D55; }
+.cta-block .meta .v{ color:var(--ink); font-size:15px; }
+.cta-actions{ display:flex; gap:16px; margin-top:48px; flex-wrap:wrap; }
+.cta-block .btn-primary{ background:var(--ink); color:var(--bone); }
+.cta-block .btn-primary:hover{ background:var(--voltage); }
+.cta-block .btn-ghost{ border-color:rgba(11,11,13,0.2); color:var(--ink); }
+.cta-block .btn-ghost:hover{ border-color:var(--voltage); color:var(--voltage); }
+
+/* ============== FOOTER ============== */
+footer{
+  padding: 64px var(--mx) 48px; background:var(--ink); color:var(--mist);
+  border-top:1px solid var(--rule-dark);
+}
+.foot-top{ display:flex; justify-content:space-between; align-items:start; gap:32px; flex-wrap:wrap; }
+.foot-brand{ font-family:var(--f-mono); font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--bone); display:flex; align-items:center; gap:10px; }
+.foot-brand .dot{ width:8px; height:8px; border-radius:99px; background:var(--voltage-l); }
+.foot-cols{ display:flex; gap:64px; flex-wrap:wrap; }
+.foot-col{ display:flex; flex-direction:column; gap:10px; font-size:13px; }
+.foot-col .h{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--fog); margin-bottom:8px; }
+.foot-col a{ color:var(--mist); transition:color .2s; }
+.foot-col a:hover{ color:var(--voltage-l); }
+.foot-bot{
+  margin-top:64px; padding-top:24px; border-top:1px solid var(--rule-dark);
+  display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap;
+  font-family:var(--f-mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--mist);
+}
+
+/* ============== REVEAL ============== */
+.reveal{ opacity:0; transform:translateY(20px); transition: opacity 1s ease, transform 1s ease; }
+.reveal.in{ opacity:1; transform:none; }
+
+/* AUTH MODAL */
+.auth-overlay{
+  position:fixed; inset:0; z-index:100;
+  background: rgba(8,9,11,0.78);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transition: opacity .3s ease;
+  padding: 24px;
+}
+.auth-overlay.open{ opacity:1; pointer-events:auto; }
+.auth-panel{
+  background: var(--bone); color: var(--ink);
+  width: 100%; max-width: 520px; padding: 48px;
+  position: relative;
+  transform: translateY(16px); opacity:0;
+  transition: transform .4s ease, opacity .4s ease;
+  border: 1px solid rgba(11,11,13,0.08);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+}
+.auth-overlay.open .auth-panel{ transform:none; opacity:1; }
+.auth-close{
+  position:absolute; top:18px; right:18px;
+  width:36px; height:36px; border:1px solid var(--rule-light);
+  background:transparent; color:var(--ink); cursor:pointer;
+  font-size:22px; line-height:1; font-family:var(--f-serif);
+  transition: all .2s ease;
+}
+.auth-close:hover{ background:var(--ink); color:var(--bone); border-color:var(--ink); }
+.auth-panel .eyebrow{ color:var(--voltage); }
+.auth-panel .eyebrow::before{ background:var(--voltage); }
+.auth-title{
+  font-family:var(--f-sans); font-size: clamp(28px, 3vw, 36px); font-weight:500;
+  letter-spacing:-0.01em; line-height:1.1; margin-top:18px;
+}
+.auth-sub{ color:#4A4D55; font-size:14px; line-height:1.55; margin-top:14px; }
+.auth-form{ display:flex; flex-direction:column; gap:18px; margin-top:32px; }
+.auth-field{ display:flex; flex-direction:column; gap:8px; }
+.auth-field .k{ font-family:var(--f-mono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#4A4D55; }
+.auth-field input{
+  width:100%; padding: 14px 0; border:0; border-bottom:1px solid var(--rule-light);
+  background:transparent; color:var(--ink);
+  font-family:var(--f-sans); font-size:16px; outline:none;
+  transition: border-color .2s ease;
+}
+.auth-field input:focus{ border-color: var(--voltage); }
+.auth-actions{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:14px; flex-wrap:wrap; }
+.auth-panel .btn-primary{ background:var(--ink); color:var(--bone); }
+.auth-panel .btn-primary:hover{ background:var(--voltage); }
+.auth-link{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--voltage); }
+.auth-foot{
+  margin-top:24px; padding-top:18px; border-top:1px solid var(--rule-light);
+  display:flex; gap:14px; align-items:baseline;
+  font-size:12px; color:#4A4D55;
+}
+.auth-foot .label{ color:var(--voltage); }
+.auth-error{
+  font-size:13px; line-height:1.45; color:#8B2E2E;
+  padding:12px 14px; border:1px solid rgba(139,46,46,0.25); background:rgba(139,46,46,0.06);
+}
+.auth-error.info{
+  color:#14495A;
+  border-color:rgba(31,100,120,0.35);
+  background:rgba(31,100,120,0.08);
+}
+
+/* Marquee */
+.marquee{
+  background:var(--ink); border-top:1px solid var(--rule-dark); border-bottom:1px solid var(--rule-dark);
+  padding: 28px 0; overflow:hidden;
+}
+.marquee-track{ display:flex; gap:80px; white-space:nowrap; animation: scroll 38s linear infinite; }
+.marquee-item{ font-family:var(--f-serif); font-style:italic; font-size: clamp(28px, 3vw, 48px); color:var(--fog); display:flex; align-items:center; gap:80px; }
+.marquee-item::after{ content:""; width:8px; height:8px; border-radius:99px; background:var(--voltage-l); display:inline-block; }
+@keyframes scroll{ from{ transform:translateX(0); } to { transform:translateX(-50%); } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="brand"><span class="dot"></span>BITRA</div>
+  <div class="links">
+    <a href="#manifiesto">Manifiesto</a>
+    <a href="#capacidades">Capacidades</a>
+    <a href="#metodo">Método</a>
+    <a href="#casos">Casos</a>
+  </div>
+  <a href="#contacto" class="cta">Agendar conversación <span class="arr">→</span></a>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <canvas id="particles"></canvas>
+
+  <div class="hero-content">
+    <span class="hero-tag">BITRA Brandbook 2026 · Vol. I</span>
+
+    <h1 class="h-display hero-headline">
+      <span class="line">Estrategia <span class="italic">primero,</span></span>
+      <span class="line">herramienta después.</span>
+      <span class="line"><span class="italic">Resultado</span> siempre.</span>
+    </h1>
+
+    <p class="hero-sub">
+      Somos el CTO externo que toda compañía de 20–100 empleados merece tener.
+      Convertimos cada decisión TI en una palanca medible de crecimiento — no en una factura mensual sin retorno.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#contacto" class="btn btn-primary">Iniciar diagnóstico <span class="arr">→</span></a>
+      <a href="#capacidades" class="btn btn-ghost">Ver capacidades</a>
+    </div>
+  </div>
+
+  <div class="scroll-cue">Scroll · explorar</div>
+</header>
+
+<!-- MANIFIESTO -->
+<section class="manifiesto reveal" id="manifiesto">
+  <span class="eyebrow" style="color:var(--voltage);">— Manifiesto</span>
+  <p class="quote" style="margin-top:48px;">
+    No vendemos licencias <span class="em">ni horas.</span><br/>
+    Vendemos <span class="accent">juicio técnico</span> al servicio de objetivos de negocio claros.
+  </p>
+  <p class="lede" style="color:#4A4D55; margin-top:48px; max-width:720px;">
+    La diferencia entre estancamiento y escala en la mediana empresa no está en el presupuesto tecnológico — está en la inteligencia con que se ejecuta.
+  </p>
+</section>
+
+<!-- METRICS -->
+<section class="metrics reveal" style="padding-top:80px; padding-bottom:80px;">
+  <div class="metrics-grid">
+    <div class="metric">
+      <span class="n">$28M</span>
+      <span class="l">COP en ahorros documentados</span>
+      <span class="k">Caso · Manufactura · 2024</span>
+    </div>
+    <div class="metric">
+      <span class="n">−34%</span>
+      <span class="l">factura cloud · 6 meses</span>
+      <span class="k">Servicios profesionales</span>
+    </div>
+    <div class="metric">
+      <span class="n">+41%</span>
+      <span class="l">productividad contable</span>
+      <span class="k">Servicios financieros</span>
+    </div>
+    <div class="metric">
+      <span class="n">0<span class="serif italic">.</span></span>
+      <span class="l">downtime en migración</span>
+      <span class="k">SLAs · nuevos</span>
+    </div>
+  </div>
+</section>
+
+<!-- CAPACIDADES -->
+<section id="capacidades" class="reveal">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">— Capacidades</span>
+      <h2 class="h1" style="margin-top:24px;">Siete capacidades.<br/>Una sola firma.</h2>
+    </div>
+    <p class="lede">
+      BITRA no vende servicios — instala capacidades. Cada una opera autónomamente o se compone con el resto, según el momento y la madurez tecnológica del cliente.
+    </p>
+  </div>
+
+  <div class="cap-list">
+    <div class="cap-row">
+      <span class="num">C · 01</span>
+      <span class="name">Dirección estratégica<br/>&amp; Gobierno TI</span>
+      <span class="desc">CTO externo · roadmap anual · evaluación de inversiones · reporte ejecutivo.</span>
+      <span class="arr">→</span>
+    </div>
+    <div class="cap-row">
+      <span class="num">C · 02</span>
+      <span class="name">Auditoría &amp; Arquitectura TI</span>
+      <span class="desc">Diagnóstico 360° · redes, seguridad y datos · arquitectura objetivo por fases.</span>
+      <span class="arr">→</span>
+    </div>
+    <div class="cap-row">
+      <span class="num">C · 03</span>
+      <span class="name">Gobierno de Proveedores TI</span>
+      <span class="desc">Renegociación de contratos · SLAs con penalizaciones · ahorros hasta 50%.</span>
+      <span class="arr">→</span>
+    </div>
+    <div class="cap-row">
+      <span class="num">C · 04</span>
+      <span class="name">Automatización &amp; Integraciones</span>
+      <span class="desc">N8N · RPA · APIs · workflows ERP/CRM · −30% tiempos operativos.</span>
+      <span class="arr">→</span>
+    </div>
+    <div class="cap-row">
+      <span class="num">C · 05</span>
+      <span class="name">Datos, BI &amp; Análisis Predictivo</span>
+      <span class="desc">Power BI · dashboards ejecutivos · KPIs · modelos predictivos sobre datos reales.</span>
+      <span class="arr">→</span>
+    </div>
+    <div class="cap-row">
+      <span class="num">C · 06</span>
+      <span class="name">Cloud · FinOps · Optimización</span>
+      <span class="desc">Azure · GCP · gobernanza · 20–40% menos en costos cloud.</span>
+      <span class="arr">→</span>
+    </div>
+    <div class="cap-row">
+      <span class="num">C · 07</span>
+      <span class="name">Seguridad &amp; Continuidad</span>
+      <span class="desc">FortiGate · AD · backups · BCP/DRP · gestión de identidades · hardening.</span>
+      <span class="arr">→</span>
+    </div>
+  </div>
+</section>
+
+<!-- BITRA OS METHOD -->
+<section class="os reveal" id="metodo">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">— BITRA OS</span>
+      <h2 class="h1" style="margin-top:24px;">Cómo trabajamos.<br/><span class="italic serif">Un sistema, cuatro fases.</span></h2>
+    </div>
+    <p class="lede">
+      Un sistema operativo de transformación digital diseñado para la velocidad de la mediana empresa. Sin teatro de consultoría — solo decisiones técnicas con retorno medible.
+    </p>
+  </div>
+
+  <div class="os-grid">
+    <div class="os-card">
+      <div class="k"><span class="step">Fase · 01</span><span class="num">01</span></div>
+      <h4>Diagnóstico ejecutivo</h4>
+      <p>Inventario tecnológico, contratos, dependencias, riesgos. Cuantificamos el costo de la inacción.</p>
+    </div>
+    <div class="os-card">
+      <div class="k"><span class="step">Fase · 02</span><span class="num">02</span></div>
+      <h4>Tesis &amp; roadmap</h4>
+      <p>Definimos hipótesis priorizadas con impacto en P&amp;L, secuencia técnica y plan trimestral por dueño.</p>
+    </div>
+    <div class="os-card">
+      <div class="k"><span class="step">Fase · 03</span><span class="num">03</span></div>
+      <h4>Ejecución supervisada</h4>
+      <p>Implementación con proveedores propios o existentes. SLAs reales, control de calidad y entregables.</p>
+    </div>
+    <div class="os-card">
+      <div class="k"><span class="step">Fase · 04</span><span class="num">04</span></div>
+      <h4>Operación &amp; reporte</h4>
+      <p>Comité directivo mensual. KPIs vivos. Roadmap re-priorizado contra resultados, no contra discurso.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CASOS -->
+<section class="casos reveal" id="casos">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">— Casos de impacto</span>
+      <h2 class="h1" style="margin-top:24px;">Trabajo real.<br/>Resultados <span class="italic serif" style="color:var(--voltage);">medibles</span>.</h2>
+    </div>
+    <p class="lede" style="color:#4A4D55;">
+      Una muestra de proyectos representativos. Cada caso reporta lo que cambió en el balance — no en el discurso. Detalles operativos bajo NDA.
+    </p>
+  </div>
+
+  <article class="caso-feature">
+    <div>
+      <span class="label" style="color:var(--voltage-l);">CASO · 01 · DESTACADO</span>
+      <div style="display:flex; gap:32px; align-items:flex-end; margin-top:32px;">
+        <div class="big">28<sup>M</sup></div>
+        <div>
+          <h3>COP en ahorros<br/>documentados.</h3>
+          <div class="desc">Renegociación de contratos &amp; consolidación de proveedores · 9 meses.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span class="label" style="color:var(--mist);">Clientes · Formacol &middot; Contiflex</span>
+      <div class="kpis">
+        <div class="kpi"><span class="k">SLAs nuevos</span><span class="n">12</span></div>
+        <div class="kpi"><span class="k">Contratos revisados</span><span class="n">24</span></div>
+        <div class="kpi"><span class="k">Downtime migración</span><span class="n">0<span style="color:var(--voltage-l);">.</span></span></div>
+      </div>
+    </div>
+  </article>
+
+  <div class="caso-minor-row">
+    <article class="caso-minor">
+      <div class="head"><span>Caso · 02</span><span>Servicios profesionales</span></div>
+      <div class="n">−34%</div>
+      <div class="l">factura cloud · 6 meses</div>
+      <div class="desc">Auditoría Azure + redimensionamiento de recursos · políticas FinOps · reportes mensuales.</div>
+    </article>
+    <article class="caso-minor">
+      <div class="head"><span>Caso · 03</span><span>Servicios financieros</span></div>
+      <div class="n">+41%</div>
+      <div class="l">productividad contable</div>
+      <div class="desc">Automatización contable y logística con N8N · integraciones ERP/CRM · workflows con validación inteligente.</div>
+    </article>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-block" id="contacto">
+  <div>
+    <span class="eyebrow">— Próximo paso</span>
+    <h2 class="h-display" style="margin-top:32px; line-height:0.98;">
+      Una conversación.<br/>
+      <span class="accent">Un diagnóstico.</span><br/>
+      Una decisión.
+    </h2>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="/cdn-cgi/l/email-protection#83ebecefe2c3e1eaf7f1e2ade0ec">Agendar conversación <span class="arr">→</span></a>
+      <a class="btn btn-ghost" href="#capacidades">Conocer capacidades</a>
+    </div>
+  </div>
+
+  <div class="meta">
+    <div class="row"><span class="k">Sede</span><span class="v">Medellín · Bogotá · Operación regional</span></div>
+    <div class="row"><span class="k">Email</span><span class="v"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4921262528092b203d3b28672a26">[email&#160;protected]</a></span></div>
+    <div class="row"><span class="k">Engagement</span><span class="v">Básico · Plus · Premium · Proyecto especial</span></div>
+    <div class="row"><span class="k">Confidencialidad</span><span class="v">Toda interacción bajo NDA estándar.</span></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand"><span class="dot"></span>BITRA · Brandbook 2026 · Vol. I</div>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <span class="h">Marca</span>
+        <a href="#manifiesto">Manifiesto</a>
+        <a href="#casos">Casos de impacto</a>
+        <a href="#" id="open-auth">Brandbook completo →</a>
+      </div>
+      <div class="foot-col">
+        <span class="h">Capacidades</span>
+        <a href="#capacidades">Dirección estratégica</a>
+        <a href="#capacidades">Auditoría &amp; arquitectura</a>
+        <a href="#capacidades">Cloud &amp; FinOps</a>
+      </div>
+      <div class="foot-col">
+        <span class="h">Contacto</span>
+        <a href="/cdn-cgi/l/email-protection#b2daddded3f2d0dbc6c0d39cd1dd"><span class="__cf_email__" data-cfemail="f890979499b89a918c8a99d69b97">[email&#160;protected]</span></a>
+        <a href="#contacto">Agendar conversación</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- AUTH MODAL -->
+<div class="auth-overlay" id="auth-overlay" aria-hidden="true">
+  <div class="auth-panel" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+    <button class="auth-close" id="auth-close" aria-label="Cerrar">×</button>
+    <span class="eyebrow">— Acceso restringido</span>
+    <h3 id="auth-title" class="auth-title">Brandbook BITRA <span class="italic serif">· Vol. I</span></h3>
+    <p class="auth-sub">Documento confidencial. Accede con correo y contraseña (Supabase Auth). Puedes iniciar sesión o crear cuenta si tu proyecto lo permite.</p>
+
+    <form class="auth-form" id="auth-form" autocomplete="on">
+      <p class="auth-error" id="auth-error" role="alert" hidden></p>
+      <label class="auth-field">
+        <span class="k">Correo corporativo</span>
+        <input type="email" name="email" autocomplete="username" placeholder="nombre@empresa.com" required />
+      </label>
+      <label class="auth-field">
+        <span class="k">Contraseña</span>
+        <input type="password" name="password" autocomplete="current-password" placeholder="••••••••" required />
+      </label>
+      <div class="auth-actions">
+        <button type="submit" class="btn btn-primary" id="auth-submit">Acceder <span class="arr">→</span></button>
+        <button type="button" class="auth-link" id="auth-mode-toggle" style="background:none;border:0;cursor:pointer;padding:0;font:inherit;">¿Primera vez? Crear cuenta</button>
+      </div>
+      <div class="auth-actions" style="margin-top:0;">
+        <a class="auth-link" href="#" id="auth-recover">Recuperar contraseña →</a>
+      </div>
+      <div class="auth-foot">
+        <span class="label">NDA</span>
+        <span>Toda interacción queda bajo acuerdo de confidencialidad estándar.</span>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script type="module" src="/src/landing-auth.js"></script>
+<script>
+/* ============== PARTICLES — connected network with subtle drift + cursor parallax ============== */
+(function(){
+  const c = document.getElementById('particles');
+  const ctx = c.getContext('2d');
+  let w, h, dpr;
+  let particles = [];
+  let mouse = { x: -9999, y: -9999 };
+
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const rect = c.getBoundingClientRect();
+    w = rect.width; h = rect.height;
+    c.width = w * dpr; c.height = h * dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    initParticles();
+  }
+
+  function initParticles(){
+    const target = Math.floor((w*h)/14000); // density
+    const N = Math.max(60, Math.min(180, target));
+    particles = [];
+    for (let i=0; i<N; i++){
+      particles.push({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        vx: (Math.random()-0.5)*0.18,
+        vy: (Math.random()-0.5)*0.18,
+        r: Math.random()*1.4 + 0.4,
+        a: Math.random()*0.6 + 0.2
+      });
+    }
+  }
+
+  function step(){
+    ctx.clearRect(0,0,w,h);
+    // ambient glow
+    const grad = ctx.createRadialGradient(w*0.85, h*0.18, 10, w*0.85, h*0.18, Math.max(w,h)*0.55);
+    grad.addColorStop(0, 'rgba(79,160,181,0.10)');
+    grad.addColorStop(1, 'rgba(11,11,13,0)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,w,h);
+
+    // update + draw dots
+    for (let p of particles){
+      // subtle attraction to mouse
+      const dx = mouse.x - p.x, dy = mouse.y - p.y;
+      const dist = Math.hypot(dx,dy);
+      if (dist < 160){
+        const f = (1 - dist/160) * 0.04;
+        p.vx += (dx/dist) * f;
+        p.vy += (dy/dist) * f;
+      }
+      p.x += p.vx;
+      p.y += p.vy;
+      // damping & wrap
+      p.vx *= 0.985; p.vy *= 0.985;
+      if (p.x < -10) p.x = w+10;
+      if (p.x > w+10) p.x = -10;
+      if (p.y < -10) p.y = h+10;
+      if (p.y > h+10) p.y = -10;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(180,200,210,${p.a})`;
+      ctx.fill();
+    }
+
+    // connections
+    for (let i=0;i<particles.length;i++){
+      for (let j=i+1;j<particles.length;j++){
+        const p1 = particles[i], p2 = particles[j];
+        const d = Math.hypot(p1.x-p2.x, p1.y-p2.y);
+        if (d < 140){
+          const a = (1 - d/140) * 0.22;
+          ctx.strokeStyle = `rgba(79,160,181,${a})`;
+          ctx.lineWidth = 0.6;
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  window.addEventListener('resize', resize);
+  window.addEventListener('mousemove', e => {
+    const r = c.getBoundingClientRect();
+    mouse.x = e.clientX - r.left;
+    mouse.y = e.clientY - r.top;
+  });
+  window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+
+  resize();
+  step();
+})();
+
+/* ============== NAV scroll state ============== */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 40) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+});
+
+/* ============== Reveal on scroll ============== */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(en => { if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+</script>
+
+</body>
+</html>
