@@ -1,4 +1,4 @@
-import { getSupabase, supabaseConfigured } from './supabaseClient.js';
+import { getSupabase, supabaseConfigured } from '../../lib/supabaseClient.js';
 
 function redirectToLanding() {
   const landing = new URL('Landing.html', window.location.href);

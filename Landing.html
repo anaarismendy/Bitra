@@ -691,7 +691,7 @@ footer{
     <button class="auth-close" id="auth-close" aria-label="Cerrar">×</button>
     <span class="eyebrow">— Acceso restringido</span>
     <h3 id="auth-title" class="auth-title">Brandbook BITRA <span class="italic serif">· Vol. I</span></h3>
-    <p class="auth-sub">Documento confidencial. Accede con correo y contraseña (Supabase Auth). Puedes iniciar sesión o crear cuenta si tu proyecto lo permite.</p>
+    <p class="auth-sub">Documento confidencial. Inicia sesión con el correo y la contraseña que te asignen. No hay registro en esta página: los usuarios se crean en Supabase (administrador o panel).</p>
 
     <form class="auth-form" id="auth-form" autocomplete="on">
       <p class="auth-error" id="auth-error" role="alert" hidden></p>
@@ -705,9 +705,6 @@ footer{
       </label>
       <div class="auth-actions">
         <button type="submit" class="btn btn-primary" id="auth-submit">Acceder <span class="arr">→</span></button>
-        <button type="button" class="auth-link" id="auth-mode-toggle" style="background:none;border:0;cursor:pointer;padding:0;font:inherit;">¿Primera vez? Crear cuenta</button>
-      </div>
-      <div class="auth-actions" style="margin-top:0;">
         <a class="auth-link" href="#" id="auth-recover">Recuperar contraseña →</a>
       </div>
       <div class="auth-foot">
@@ -718,7 +715,7 @@ footer{
   </div>
 </div>
 
-<script type="module" src="/src/landing-auth.js"></script>
+<script type="module" src="/src/features/landing/landing-auth.js"></script>
 <script>
 /* ============== PARTICLES — connected network with subtle drift + cursor parallax ============== */
 (function(){

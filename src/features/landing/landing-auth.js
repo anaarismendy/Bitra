@@ -1,4 +1,8 @@
-import { getSupabase, supabaseConfigured } from './supabaseClient.js';
+/**
+ * Modal Brandbook: solo inicio de sesión (signInWithPassword).
+ * No signUp en cliente; cuentas en Supabase Dashboard o por admin.
+ */
+import { getSupabase, supabaseConfigured } from '../../lib/supabaseClient.js';
 
 const overlay = document.getElementById('auth-overlay');
 const opener = document.getElementById('open-auth');
@@ -6,9 +10,7 @@ const closer = document.getElementById('auth-close');
 const form = document.getElementById('auth-form');
 const errEl = document.getElementById('auth-error');
 const submitBtn = document.getElementById('auth-submit');
-const modeToggle = document.getElementById('auth-mode-toggle');
-
-let mode = 'signin';
+const submitHtml = submitBtn ? submitBtn.innerHTML : '';
 
 function showErr(msg) {
   if (!errEl) return;
@@ -29,20 +31,6 @@ function clearErr() {
   errEl.classList.remove('info');
   errEl.textContent = '';
   errEl.hidden = true;
-}
-
-function syncModeUi() {
-  const signin = mode === 'signin';
-  if (submitBtn) {
-    submitBtn.innerHTML = signin
-      ? 'Acceder <span class="arr">→</span>'
-      : 'Crear cuenta <span class="arr">→</span>';
-  }
-  if (modeToggle) {
-    modeToggle.textContent = signin
-      ? '¿Primera vez? Crear cuenta'
-      : 'Ya tengo cuenta · Iniciar sesión';
-  }
 }
 
 function open(e) {
@@ -83,15 +71,6 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') close();
 });
 
-if (modeToggle) {
-  modeToggle.addEventListener('click', (e) => {
-    e.preventDefault();
-    mode = mode === 'signin' ? 'signup' : 'signin';
-    syncModeUi();
-    clearErr();
-  });
-}
-
 const qs = new URLSearchParams(window.location.search);
 if (window.location.hash === '#auth' || qs.get('necesita-acceso') === '1') {
   open();
@@ -123,37 +102,20 @@ if (form && submitBtn) {
     submitBtn.textContent = 'Conectando…';
 
     try {
-      if (mode === 'signup') {
-        const { data, error } = await supabase.auth.signUp({
-          email: trimmed,
-          password,
-        });
-        if (error) throw error;
-        if (data.user && !data.session) {
-          showInfo(
-            'Cuenta creada. Si tu proyecto exige confirmación por correo, revisa tu bandeja antes de acceder al Brandbook.',
-          );
-          return;
-        }
-        window.location.href = readNext();
-      } else {
-        const { error } = await supabase.auth.signInWithPassword({
-          email: trimmed,
-          password,
-        });
-        if (error) throw error;
-        window.location.href = readNext();
-      }
+      const { error } = await supabase.auth.signInWithPassword({
+        email: trimmed,
+        password,
+      });
+      if (error) throw error;
+      window.location.href = readNext();
     } catch (err) {
-      showErr(err?.message || 'No se pudo completar la autenticación.');
+      showErr(err?.message || 'No se pudo iniciar sesión.');
     } finally {
       submitBtn.disabled = false;
-      syncModeUi();
+      submitBtn.innerHTML = submitHtml;
     }
   });
 }
-
-syncModeUi();
 
 const recover = document.getElementById('auth-recover');
 if (recover) {
