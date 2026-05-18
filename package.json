@@ -1,0 +1,41 @@
+{
+  "name": "bitra-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "vitest",
+    "test:run": "vitest run"
+  },
+  "dependencies": {
+    "@portabletext/react": "*",
+    "@sanity/image-url": "*",
+    "@supabase/ssr": "*",
+    "@supabase/supabase-js": "*",
+    "next": "16.2.6",
+    "next-sanity": "*",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/typography": "*",
+    "@testing-library/jest-dom": "*",
+    "@testing-library/react": "*",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "*",
+    "@sanity/vision": "*",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.6",
+    "jsdom": "*",
+    "sanity": "*",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "vitest": "*"
+  }
+}
