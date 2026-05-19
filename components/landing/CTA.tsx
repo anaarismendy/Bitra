@@ -44,18 +44,15 @@ export default function CTA() {
           </p>
 
           <div className="flex gap-3 flex-wrap mt-10 relative z-[1]">
-            <a
-              href="mailto:hola@bitra.co"
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-ink text-bone font-mono text-[11px] tracking-[0.14em] uppercase transition-all duration-300"
-              style={{ transition: 'background 300ms, box-shadow 300ms' }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#1F6478'; e.currentTarget.style.boxShadow = '0 0 24px rgba(31,100,120,0.4)'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = ''; e.currentTarget.style.boxShadow = ''; }}
-            >
+            <a href="mailto:hola@bitra.co" className="btn btn-ink-on-light">
               Agendar conversación →
             </a>
             <a
               href="#capacidades"
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 border border-black/[0.12] text-steel font-mono text-[11px] tracking-[0.14em] uppercase hover:border-voltage hover:text-voltage transition-all duration-300"
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 font-mono text-[11px] tracking-[0.14em] uppercase text-steel transition-all duration-300 hover:text-voltage"
+              style={{ border: '1px solid var(--border-light-medium)', transition: 'border-color 300ms, color 300ms' }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(28,95,116,0.4)' }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = '' }}
             >
               Ver capacidades
             </a>

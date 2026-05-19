@@ -54,8 +54,8 @@ export default function CasosBanner() {
 
         {/* Featured case — executive report style */}
         <FadeIn delay={80}>
-          <article className="bg-ink text-bone border border-white/[0.05] grid grid-cols-1 lg:grid-cols-[1fr_380px] xl:grid-cols-[1fr_420px] mb-4" style={{ boxShadow: '0 4px 32px rgba(0,0,0,0.25)' }}>
-            <div className="p-10 lg:p-14 border-b lg:border-b-0 lg:border-r border-white/[0.06]">
+          <article className="bg-ink text-bone grid grid-cols-1 lg:grid-cols-[1fr_380px] xl:grid-cols-[1fr_420px] mb-4" style={{ border: '1px solid var(--border-subtle)', boxShadow: 'var(--shadow-depth)' }}>
+            <div className="p-10 lg:p-14" style={{ borderBottom: '1px solid var(--border-subtle)', borderRight: '0' }}>
               <div className="flex items-center justify-between mb-10 pb-6 border-b border-white/[0.06]">
                 <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-mist/60">
                   Caso · 01 · Destacado
@@ -129,7 +129,7 @@ export default function CasosBanner() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {MINOR_CASES.map((c, i) => (
             <FadeIn key={c.tag} delay={160 + i * 80}>
-              <article className="bg-white border p-10 flex flex-col gap-6 transition-all duration-400 hover:-translate-y-0.5" style={{ borderColor: 'rgba(11,11,13,0.06)', boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }} onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(11,11,13,0.12)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.1)'; }} onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(11,11,13,0.06)'; e.currentTarget.style.boxShadow = '0 1px 4px rgba(0,0,0,0.06)'; }}>
+              <article className="card-light p-10 flex flex-col gap-6">
                 <div className="flex items-center justify-between font-mono text-[10px] tracking-[0.16em] uppercase text-steel/50">
                   <span>{c.tag}</span>
                   <span>{c.sector}</span>

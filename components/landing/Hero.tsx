@@ -14,22 +14,19 @@ export default function Hero() {
     >
       <ParticleCanvas />
 
-      {/* Atmospheric gradients — layer 1 */}
+      {/* Atmospheric gradients — slow drift layers */}
       <div
         className="absolute inset-0 z-[1] pointer-events-none"
         style={{
-          background:
-            'radial-gradient(ellipse 65% 55% at 78% 35%, rgba(31,100,120,0.11) 0%, transparent 62%)',
+          background: 'radial-gradient(ellipse 65% 55% at 78% 35%, rgba(28,95,116,0.11) 0%, transparent 62%)',
           animation: 'atmosphericDrift 28s ease-in-out infinite reverse',
           willChange: 'transform',
         }}
       />
-      {/* Atmospheric gradients — layer 2 */}
       <div
         className="absolute inset-0 z-[1] pointer-events-none"
         style={{
-          background:
-            'radial-gradient(ellipse 40% 35% at 12% 78%, rgba(79,160,181,0.06) 0%, transparent 65%)',
+          background: 'radial-gradient(ellipse 40% 35% at 12% 78%, rgba(75,157,176,0.06) 0%, transparent 65%)',
           animation: 'atmosphericDrift 34s ease-in-out infinite',
           willChange: 'transform',
           animationDelay: '-11s',
@@ -40,80 +37,70 @@ export default function Hero() {
 
         {/* ── Left ── */}
         <div className="relative">
-          {/* Atmospheric glow — slow drift */}
+          {/* Localized glow behind headline — reduced blur for performance */}
           <div
             className="absolute -top-16 -left-8 w-[560px] h-[320px] pointer-events-none"
             style={{
-              background: 'radial-gradient(ellipse 70% 60% at 40% 45%, rgba(31,100,120,0.11) 0%, transparent 70%)',
-              filter: 'blur(48px)',
+              background: 'radial-gradient(ellipse 70% 60% at 40% 45%, rgba(28,95,116,0.11) 0%, transparent 70%)',
+              filter: 'blur(28px)',
               animation: 'atmosphericDrift 22s ease-in-out infinite',
               willChange: 'transform',
-              transformOrigin: 'center center',
             }}
           />
-          <div className="inline-flex items-center gap-3 font-mono text-[10px] tracking-[0.22em] uppercase text-mist mb-9 relative z-[1]">
+
+          <div className="inline-flex items-center gap-3 font-mono text-[10px] tracking-[0.22em] uppercase text-mist/60 mb-9 relative z-[1]">
             <span className="w-1.5 h-1.5 rounded-full bg-voltage-light" />
             Firma tecnológica estratégica — Medellín · Bogotá
           </div>
 
           <h1
-            className="font-display font-semibold text-bone leading-[1.01] tracking-[-0.025em] max-w-[700px] relative z-[1]"
-            style={{ fontSize: 'clamp(38px, 5.2vw, 80px)' }}
+            className="font-display font-semibold text-bone leading-[1.0] tracking-[-0.028em] max-w-[680px] relative z-[1]"
+            style={{ fontSize: 'clamp(36px, 5vw, 78px)' }}
           >
             <span className="block">Estrategia <em className="font-serif font-normal italic">primero,</em></span>
-            <span className="block text-fog/60">herramienta después.</span>
+            <span className="block text-fog/55">herramienta después.</span>
             <span className="block">
               <em className="font-serif font-normal italic text-voltage-light">Resultado</em> siempre.
             </span>
           </h1>
 
           <p
-            className="mt-8 text-fog/80 leading-[1.7] max-w-[460px] relative z-[1]"
+            className="mt-8 text-fog/75 leading-[1.72] max-w-[440px] relative z-[1]"
             style={{ fontSize: 'clamp(15px, 1.05vw, 17px)' }}
           >
             Somos el CTO externo que toda empresa de 20–100 personas merece tener. Convertimos cada decisión TI en una palanca de crecimiento medible — no en una factura mensual sin retorno.
           </p>
 
-          <div className="flex gap-3 flex-wrap mt-10">
+          <div className="flex gap-3 flex-wrap mt-10 relative z-[1]">
             <a
               href="#contacto"
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-bone text-ink font-mono text-[11px] tracking-[0.14em] uppercase hover:bg-voltage hover:text-bone transition-all duration-300"
+              className="btn btn-primary"
             >
               Iniciar diagnóstico
               <span className="font-serif italic text-base leading-none">→</span>
             </a>
             <a
               href="#capacidades"
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 border border-white/[0.12] text-fog font-mono text-[11px] tracking-[0.14em] uppercase hover:border-white/25 hover:text-bone transition-all duration-300"
+              className="btn btn-secondary"
             >
               Ver capacidades
             </a>
           </div>
 
-          <div className="flex items-center gap-4 mt-10 flex-wrap">
-            <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-mist/60">Confían en BITRA</span>
-            <span className="w-6 h-px bg-white/[0.1]" />
-            <span className="font-mono text-[10px] tracking-[0.1em] text-fog/50">
+          <div className="flex items-center gap-4 mt-10 flex-wrap relative z-[1]">
+            <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-mist/50">Confían en BITRA</span>
+            <span className="w-6 h-px" style={{ background: 'var(--border-soft)' }} />
+            <span className="font-mono text-[9px] tracking-[0.1em] text-fog/45">
               Formacol · Contiflex · Manufactura · Servicios financieros
             </span>
           </div>
         </div>
 
-        {/* ── Right: Executive metrics card ── */}
+        {/* ── Right: Executive metrics card — CSS class handles hover ── */}
         <div className="hidden lg:block">
-          <div
-            className="border border-white/[0.08] p-7 xl:p-8 transition-all duration-500 hover:-translate-y-0.5"
-            style={{
-              background: 'rgba(255,255,255,0.025)',
-              backdropFilter: 'blur(16px)',
-              boxShadow: '0 4px 24px rgba(0,0,0,0.35)',
-              transition: 'transform 500ms cubic-bezier(0.16,1,0.3,1), box-shadow 500ms cubic-bezier(0.16,1,0.3,1)',
-            }}
-            onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,0,0,0.55), 0 0 0 0.5px rgba(79,160,181,0.15)')}
-            onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 4px 24px rgba(0,0,0,0.35)')}
-          >
-            <div className="flex items-center justify-between mb-7 pb-5 border-b border-white/[0.06]">
-              <span className="font-mono text-[9px] tracking-[0.22em] uppercase text-mist/70">
+          <div className="card-dark p-7 xl:p-8" style={{ backdropFilter: 'blur(12px)' }}>
+            <div className="flex items-center justify-between mb-7 pb-5" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+              <span className="font-mono text-[9px] tracking-[0.22em] uppercase text-mist/60">
                 Resultados documentados
               </span>
               <span className="flex items-center gap-1.5 font-mono text-[9px] tracking-[0.14em] uppercase text-voltage-light">
@@ -125,19 +112,20 @@ export default function Hero() {
             {RESULTS.map((r) => (
               <div
                 key={r.value}
-                className="group flex items-start justify-between gap-6 py-5 border-b border-white/[0.05] last:border-0"
+                className="flex items-start justify-between gap-6 py-5 last:pb-0"
+                style={{ borderBottom: '1px solid var(--border-ghost)', ['&:last-child' as string]: { borderBottom: 'none' } }}
               >
                 <div className="flex-1 min-w-0">
                   <p
-                    className="font-display font-semibold text-bone leading-none tracking-[-0.025em]"
+                    className="font-display font-semibold text-bone leading-none tracking-[-0.03em] tabular-nums"
                     style={{ fontSize: 'clamp(26px, 2.2vw, 36px)' }}
                   >
                     {r.value}
                   </p>
-                  <p className="text-fog/70 text-[13px] leading-snug mt-1.5">{r.label}</p>
-                  <p className="font-mono text-[9px] tracking-[0.14em] uppercase text-mist/50 mt-1">{r.meta}</p>
+                  <p className="text-fog/65 text-[13px] leading-snug mt-1.5">{r.label}</p>
+                  <p className="font-mono text-[9px] tracking-[0.16em] uppercase text-mist/45 mt-1">{r.meta}</p>
                 </div>
-                <span className="font-mono text-[9px] tracking-[0.1em] uppercase border border-voltage-light/30 text-voltage-light px-2 py-1 mt-1 flex-shrink-0">
+                <span className="font-mono text-[9px] tracking-[0.1em] uppercase border text-voltage-light px-2 py-1 mt-1 flex-shrink-0" style={{ borderColor: 'rgba(75,157,176,0.28)' }}>
                   ✓
                 </span>
               </div>
@@ -145,7 +133,8 @@ export default function Hero() {
 
             <a
               href="#casos"
-              className="flex items-center justify-between mt-6 pt-5 border-t border-white/[0.06] font-mono text-[10px] tracking-[0.16em] uppercase text-mist/60 hover:text-voltage-light transition-colors duration-300 group"
+              className="flex items-center justify-between mt-6 pt-5 font-mono text-[10px] tracking-[0.16em] uppercase text-mist/55 hover:text-voltage-light transition-colors duration-300 group"
+              style={{ borderTop: '1px solid var(--border-subtle)' }}
             >
               Ver casos completos
               <span className="group-hover:translate-x-0.5 transition-transform duration-300">→</span>
@@ -155,7 +144,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-[clamp(24px,5vw,96px)] z-[3] flex items-center gap-3 text-mist/50 font-mono text-[10px] tracking-[0.2em] uppercase">
+      <div className="absolute bottom-8 left-[clamp(24px,5vw,96px)] z-[3] flex items-center gap-3 text-mist/40 font-mono text-[9px] tracking-[0.22em] uppercase">
         <span className="font-serif italic text-sm">↓</span>
         Scroll · explorar
       </div>

@@ -100,28 +100,23 @@ export default function Capacidades() {
 
       {/* Explorer — desktop */}
       <FadeIn delay={80}>
-        <div className="hidden md:grid grid-cols-[280px_1fr] lg:grid-cols-[320px_1fr] border border-white/[0.06] max-w-[1400px]" style={{ boxShadow: '0 8px 40px rgba(0,0,0,0.3)' }}>
+        <div className="hidden md:grid grid-cols-[280px_1fr] lg:grid-cols-[320px_1fr] max-w-[1400px]" style={{ border: '1px solid var(--border-soft)', boxShadow: 'var(--shadow-depth)' }}>
 
           {/* Left: list */}
-          <div className="border-r border-white/[0.06] self-start sticky top-20">
+          <div className="self-start sticky top-20" style={{ borderRight: '1px solid var(--border-soft)' }}>
             {CAPS.map((c, i) => (
               <button
                 key={c.num}
                 onClick={() => select(i)}
-                className={`w-full text-left flex items-center gap-4 px-6 py-[18px] border-b border-white/[0.05] last:border-0 transition-colors duration-300 group relative overflow-hidden ${
+                className={`w-full text-left flex items-center gap-4 px-6 py-[18px] last:border-0 transition-colors duration-300 group relative overflow-hidden ${
                   i === active ? 'bg-white/[0.04]' : 'hover:bg-white/[0.02]'
                 }`}
+              style={{ borderBottom: '1px solid var(--border-ghost)' }}
               >
                 {i === active && (
                   <>
-                    <span
-                      className="absolute left-0 top-0 bottom-0 w-[2px] bg-voltage-light"
-                      style={{ boxShadow: '2px 0 14px rgba(79,160,181,0.55), 2px 0 4px rgba(79,160,181,0.3)' }}
-                    />
-                    <span
-                      className="absolute left-0 top-0 bottom-0 w-12 pointer-events-none"
-                      style={{ background: 'linear-gradient(90deg, rgba(79,160,181,0.07) 0%, transparent 100%)' }}
-                    />
+                    <span className="rail-active" />
+                    <span className="rail-wash" />
                   </>
                 )}
                 <span className={`font-mono text-[10px] tracking-[0.16em] uppercase flex-shrink-0 transition-colors duration-300 ${i === active ? 'text-voltage-light' : 'text-mist/40'}`}>
@@ -185,7 +180,7 @@ export default function Capacidades() {
             </div>
 
             {/* 5 — KPI + CTA */}
-            <div className="mt-12 pt-8 border-t border-white/[0.06] flex items-center justify-between gap-4 flex-wrap">
+            <div className="mt-12 pt-8 flex items-center justify-between gap-4 flex-wrap" style={{ borderTop: '1px solid var(--border-subtle)' }}>
               <div>
                 <p className="font-mono text-[9px] tracking-[0.22em] uppercase text-mist/40 mb-2">
                   Resultado típico
@@ -197,20 +192,7 @@ export default function Capacidades() {
                   {cap.metric}
                 </p>
               </div>
-              <a
-                href="#contacto"
-                className="flex-shrink-0 inline-flex items-center gap-2.5 px-5 py-3 border border-white/[0.08] font-mono text-[10px] tracking-[0.16em] uppercase text-fog/70 transition-all duration-300"
-                onMouseEnter={e => {
-                  e.currentTarget.style.borderColor = 'rgba(79,160,181,0.4)'
-                  e.currentTarget.style.color = '#4FA0B5'
-                  e.currentTarget.style.boxShadow = '0 0 16px rgba(79,160,181,0.12)'
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.borderColor = ''
-                  e.currentTarget.style.color = ''
-                  e.currentTarget.style.boxShadow = ''
-                }}
-              >
+              <a href="#contacto" className="btn btn-secondary">
                 Iniciar diagnóstico →
               </a>
             </div>

@@ -31,8 +31,8 @@ export default function MetodoOS() {
   return (
     <section
       id="metodo"
-      className="relative overflow-hidden px-[clamp(24px,5vw,96px)] py-[clamp(80px,12vw,160px)]"
-      style={{ background: '#0E0E11' }}
+      className="relative overflow-hidden px-[clamp(24px,5vw,96px)] py-[clamp(96px,13vw,180px)] cv-auto"
+      style={{ background: '#0D0D10' }}
     >
       {/* Subtle grid */}
       <div
@@ -83,14 +83,12 @@ export default function MetodoOS() {
               <div
                 className="group relative flex flex-col gap-4 p-8 md:pt-14 border border-white/[0.06] md:border-0 md:border-r md:last:border-r-0 border-b md:border-b-0 transition-colors duration-500 hover:bg-white/[0.025]"
               >
-                {/* Timeline node */}
+                {/* Timeline node — CSS class handles hover */}
                 <div
-                  className="hidden md:flex absolute top-0 left-8 -translate-y-1/2 items-center justify-center w-[14px] h-[14px] rounded-full border border-white/[0.12] bg-[#0E0E11] group-hover:border-voltage-light group-hover:bg-voltage-light/10 transition-all duration-400"
-                  style={{ transition: 'border-color 400ms, background 400ms, box-shadow 400ms' }}
-                  onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 0 12px rgba(79,160,181,0.5), 0 0 4px rgba(79,160,181,0.3)')}
-                  onMouseLeave={e => (e.currentTarget.style.boxShadow = '')}
+                  className="timeline-node hidden md:flex absolute top-0 left-8 -translate-y-1/2 items-center justify-center w-[14px] h-[14px] rounded-full bg-[#0E0E11]"
+                  style={{ border: '1px solid var(--border-medium)' }}
                 >
-                  <span className="w-[5px] h-[5px] rounded-full bg-mist/50 group-hover:bg-voltage-light transition-colors duration-400" />
+                  <span className="w-[5px] h-[5px] rounded-full bg-mist/50 group-hover:bg-voltage-light transition-colors duration-300" />
                 </div>
 
                 <div className="flex items-center justify-between md:justify-start md:gap-4">

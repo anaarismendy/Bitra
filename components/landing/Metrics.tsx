@@ -12,7 +12,7 @@ const METRICS = [
 
 export default function Metrics() {
   return (
-    <section className="bg-ink border-t border-white/[0.05] border-b border-white/[0.05] px-[clamp(24px,5vw,96px)] py-24">
+    <section className="bg-ink px-[clamp(24px,5vw,96px)] py-24" style={{ borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
       <div className="grid grid-cols-2 md:grid-cols-4 max-w-[1400px]">
         {METRICS.map((m, i) => (
           <FadeIn
