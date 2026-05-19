@@ -99,7 +99,10 @@ export default function Capacidades() {
               }`}
             >
               {i === active && (
-                <span className="absolute left-0 top-0 bottom-0 w-[2px] bg-voltage-light" />
+                <>
+                  <span className="absolute left-0 top-0 bottom-0 w-[2px] bg-voltage-light" style={{ boxShadow: '2px 0 12px rgba(79,160,181,0.5), 2px 0 4px rgba(79,160,181,0.3)' }} />
+                  <span className="absolute left-0 top-0 bottom-0 w-10 pointer-events-none" style={{ background: 'linear-gradient(90deg, rgba(79,160,181,0.06) 0%, transparent 100%)' }} />
+                </>
               )}
               <span className={`font-mono text-[10px] tracking-[0.16em] uppercase flex-shrink-0 transition-colors duration-300 ${i === active ? 'text-voltage-light' : 'text-mist/50'}`}>
                 {c.num}
@@ -119,7 +122,7 @@ export default function Capacidades() {
           <div className="flex items-start justify-between gap-4 mb-2">
             <span
               className="font-serif italic leading-none text-bone/[0.07] select-none"
-              style={{ fontSize: 'clamp(80px, 9vw, 140px)' }}
+              style={{ fontSize: 'clamp(80px, 9vw, 140px)', letterSpacing: '-0.04em' }}
             >
               {cap.short}
             </span>

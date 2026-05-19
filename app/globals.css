@@ -30,6 +30,13 @@
   /* ─── Easing ─── */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ─── Shadows ─── */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.55), 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-glow-sm: 0 0 16px rgba(79, 160, 181, 0.18), 0 0 4px rgba(79, 160, 181, 0.1);
+  --shadow-glow: 0 0 32px rgba(79, 160, 181, 0.22), 0 0 8px rgba(79, 160, 181, 0.12);
 }
 
 /* ─── Reset ─── */
@@ -46,17 +53,35 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
   text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
 }
 
 body {
   background-color: var(--color-ink);
   color: var(--color-bone);
   font-family: var(--font-body);
-  line-height: 1.5;
+  font-optical-sizing: auto;
+  line-height: 1.55;
+  letter-spacing: -0.008em;
 }
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
+  text-wrap: balance;
+  font-optical-sizing: auto;
+}
+
+/* ─── Noise overlay ─── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.016;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
 }
 
 /* ─── Selection ─── */
@@ -76,6 +101,16 @@ h1, h2, h3, h4 {
 ::-webkit-scrollbar-track { background: var(--color-ink); }
 ::-webkit-scrollbar-thumb { background: var(--color-graphite); border-radius: 2px; }
 
+/* ─── GPU acceleration utilities ─── */
+.gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.will-transform {
+  will-change: transform;
+}
+
 /* ─── Keyframes ─── */
 @keyframes fadeSlideUp {
   from { opacity: 0; transform: translateY(16px); }
@@ -90,6 +125,11 @@ h1, h2, h3, h4 {
 @keyframes pulseGlow {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.4; }
+}
+
+@keyframes railGlow {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
 }
 
 .animate-fade-slide {
@@ -107,4 +147,5 @@ h1, h2, h3, h4 {
     transition-duration: 0.01ms !important;
   }
   html { scroll-behavior: auto; }
+  body::after { display: none; }
 }

@@ -37,6 +37,14 @@ export default function Navbar({ onAccessClick }: NavbarProps) {
             ? 'py-3.5 bg-ink/90 border-b border-white/[0.06] backdrop-blur-xl'
             : 'py-5 bg-ink/50 border-b border-white/[0.04] backdrop-blur-sm'
         }`}
+        style={scrolled ? {
+          backdropFilter: 'saturate(180%) blur(20px)',
+          WebkitBackdropFilter: 'saturate(180%) blur(20px)',
+          boxShadow: '0 1px 24px rgba(0,0,0,0.45), 0 0 0 0.5px rgba(255,255,255,0.04)',
+        } : {
+          backdropFilter: 'saturate(120%) blur(8px)',
+          WebkitBackdropFilter: 'saturate(120%) blur(8px)',
+        }}
       >
         <a
           href="/"
@@ -63,6 +71,9 @@ export default function Navbar({ onAccessClick }: NavbarProps) {
           <button
             onClick={onAccessClick}
             className="hidden md:flex items-center gap-2 px-5 py-2.5 border border-white/[0.12] text-bone font-mono text-[11px] tracking-[0.12em] uppercase hover:bg-voltage hover:border-voltage transition-all duration-300"
+            style={{ transition: 'background 300ms, border-color 300ms, box-shadow 300ms' }}
+            onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 0 20px rgba(31,100,120,0.35)')}
+            onMouseLeave={e => (e.currentTarget.style.boxShadow = '')}
           >
             Agendar conversación
           </button>

@@ -70,7 +70,10 @@ export default function MetodoOS() {
 
         {/* Timeline connector — desktop */}
         <div className="hidden md:block relative mb-0">
-          <div className="absolute top-[28px] left-0 right-0 h-px bg-white/[0.08]" />
+          <div
+            className="absolute top-[28px] left-0 right-0 h-px"
+            style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 8%, rgba(255,255,255,0.1) 25%, rgba(79,160,181,0.18) 50%, rgba(255,255,255,0.1) 75%, rgba(255,255,255,0.04) 92%, transparent 100%)' }}
+          />
         </div>
 
         {/* Phases grid */}
@@ -81,7 +84,12 @@ export default function MetodoOS() {
                 className="group relative flex flex-col gap-4 p-8 md:pt-14 border border-white/[0.06] md:border-0 md:border-r md:last:border-r-0 border-b md:border-b-0 transition-colors duration-500 hover:bg-white/[0.025]"
               >
                 {/* Timeline node */}
-                <div className="hidden md:flex absolute top-0 left-8 -translate-y-1/2 items-center justify-center w-[14px] h-[14px] rounded-full border border-white/[0.12] bg-[#0E0E11] group-hover:border-voltage-light group-hover:bg-voltage-light/10 transition-all duration-400">
+                <div
+                  className="hidden md:flex absolute top-0 left-8 -translate-y-1/2 items-center justify-center w-[14px] h-[14px] rounded-full border border-white/[0.12] bg-[#0E0E11] group-hover:border-voltage-light group-hover:bg-voltage-light/10 transition-all duration-400"
+                  style={{ transition: 'border-color 400ms, background 400ms, box-shadow 400ms' }}
+                  onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 0 12px rgba(79,160,181,0.5), 0 0 4px rgba(79,160,181,0.3)')}
+                  onMouseLeave={e => (e.currentTarget.style.boxShadow = '')}
+                >
                   <span className="w-[5px] h-[5px] rounded-full bg-mist/50 group-hover:bg-voltage-light transition-colors duration-400" />
                 </div>
 

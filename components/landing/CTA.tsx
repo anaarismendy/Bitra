@@ -17,13 +17,19 @@ export default function CTA() {
 
         {/* Left */}
         <FadeIn>
-          <span className="inline-flex items-center gap-2.5 font-mono text-[11px] tracking-[0.2em] uppercase text-voltage">
+          <div className="relative">
+          {/* Atmospheric glow behind headline */}
+          <div
+            className="absolute -top-20 -left-12 w-[480px] h-[320px] pointer-events-none"
+            style={{ background: 'radial-gradient(ellipse 60% 55% at 35% 45%, rgba(31,100,120,0.08) 0%, transparent 70%)', filter: 'blur(48px)' }}
+          />
+          <span className="inline-flex items-center gap-2.5 font-mono text-[11px] tracking-[0.2em] uppercase text-voltage relative z-[1]">
             <span className="w-1.5 h-1.5 rounded-full bg-voltage" />
             — Próximo paso
           </span>
 
           <h2
-            className="font-medium tracking-[-0.025em] leading-[1.0] mt-6"
+            className="font-medium tracking-[-0.025em] leading-[1.0] mt-6 relative z-[1]"
             style={{ fontSize: 'clamp(40px, 6.5vw, 108px)' }}
           >
             Una conversación.
@@ -33,14 +39,17 @@ export default function CTA() {
             Una decisión.
           </h2>
 
-          <p className="text-steel/60 leading-[1.65] mt-8 max-w-[420px]" style={{ fontSize: 'clamp(14px, 1.05vw, 16px)' }}>
+          <p className="text-steel/60 leading-[1.65] mt-8 max-w-[420px] relative z-[1]" style={{ fontSize: 'clamp(14px, 1.05vw, 16px)' }}>
             El primer diagnóstico es gratuito y sin compromiso. En 60 minutos mapeamos el estado real de su tecnología y cuantificamos las oportunidades de mejora.
           </p>
 
-          <div className="flex gap-3 flex-wrap mt-10">
+          <div className="flex gap-3 flex-wrap mt-10 relative z-[1]">
             <a
               href="mailto:hola@bitra.co"
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-ink text-bone font-mono text-[11px] tracking-[0.14em] uppercase hover:bg-voltage transition-all duration-300"
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 bg-ink text-bone font-mono text-[11px] tracking-[0.14em] uppercase transition-all duration-300"
+              style={{ transition: 'background 300ms, box-shadow 300ms' }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#1F6478'; e.currentTarget.style.boxShadow = '0 0 24px rgba(31,100,120,0.4)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = ''; e.currentTarget.style.boxShadow = ''; }}
             >
               Agendar conversación →
             </a>
@@ -50,6 +59,7 @@ export default function CTA() {
             >
               Ver capacidades
             </a>
+          </div>
           </div>
         </FadeIn>
 

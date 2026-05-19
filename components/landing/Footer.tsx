@@ -6,7 +6,7 @@ interface FooterProps {
 
 export default function Footer({ onBrandbookClick }: FooterProps) {
   return (
-    <footer className="px-[clamp(24px,5vw,96px)] pt-16 pb-12 bg-ink text-mist border-t border-white/10">
+    <footer className="px-[clamp(24px,5vw,96px)] pt-16 pb-12 bg-ink text-mist border-t" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
       <div className="flex justify-between items-start gap-8 flex-wrap">
         <div className="flex items-center gap-2.5 font-mono text-[13px] tracking-[0.16em] uppercase text-bone">
           <span className="w-2 h-2 rounded-full bg-voltage-light" />
@@ -39,7 +39,7 @@ export default function Footer({ onBrandbookClick }: FooterProps) {
         </div>
       </div>
 
-      <div className="mt-16 pt-6 border-t border-white/10 flex justify-between gap-6 flex-wrap font-mono text-[11px] tracking-[0.14em] uppercase text-mist">
+      <div className="mt-16 pt-6 border-t flex justify-between gap-6 flex-wrap font-mono text-[11px] tracking-[0.14em] uppercase text-mist/50" style={{ borderColor: 'rgba(255,255,255,0.05)' }}>
         <span>© 2026 BITRA · Todos los derechos reservados</span>
         <span>NIT · Medellín, Colombia</span>
       </div>
