@@ -17,6 +17,7 @@ export default function Footer({ onBrandbookClick }: FooterProps) {
             <span className="font-mono text-[11px] tracking-[0.16em] uppercase text-fog mb-2">Marca</span>
             <a href="#manifiesto" className="text-mist hover:text-voltage-light transition-colors">Manifiesto</a>
             <a href="#casos" className="text-mist hover:text-voltage-light transition-colors">Casos de impacto</a>
+            <a href="/blog" className="text-mist hover:text-voltage-light transition-colors">Blog & perspectiva</a>
             <button
               onClick={onBrandbookClick}
               className="text-mist hover:text-voltage-light transition-colors text-left"
