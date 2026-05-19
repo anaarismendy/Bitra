@@ -1,0 +1,234 @@
+{
+  "nav": {
+    "brand": "BITRA",
+    "links": ["Manifesto", "Capabilities", "Method", "Cases"],
+    "cta": "Schedule a call"
+  },
+
+  "hero": {
+    "badge": "BITRA Brandbook 2026 · Vol. I",
+    "h1": {
+      "line1": "Strategy",
+      "em1": "first,",
+      "line2": "technology second.",
+      "em2": "Results",
+      "line3": "always."
+    },
+    "body": "We are the fractional CTO that every 20–100 person company deserves. We turn every IT decision into a measurable growth lever — not a monthly invoice with no return.",
+    "ctaPrimary": "Start a diagnosis",
+    "ctaSecondary": "See capabilities",
+    "scroll": "Scroll · explore"
+  },
+
+  "manifiesto": {
+    "tag": "— Manifesto",
+    "quote": {
+      "line1": "We don't sell licenses",
+      "em1": "or hours.",
+      "line2": "We sell",
+      "em2": "technical judgment",
+      "suffix": "in service of clear business objectives."
+    },
+    "body": "The difference between stagnation and scale in mid-market companies is not in the technology budget — it's in the intelligence with which it is executed."
+  },
+
+  "metrics": [
+    {
+      "value": "$28M",
+      "label": "COP in documented savings",
+      "key": "Case · Manufacturing · 2024"
+    },
+    {
+      "value": "−34%",
+      "label": "cloud bill · 6 months",
+      "key": "Professional services"
+    },
+    {
+      "value": "+41%",
+      "label": "accounting productivity",
+      "key": "Financial services"
+    },
+    {
+      "value": "0",
+      "label": "downtime during migration",
+      "key": "SLAs · new"
+    }
+  ],
+
+  "capacidades": {
+    "tag": "— Capabilities",
+    "h2": {
+      "line1": "Seven capabilities.",
+      "line2": "One firm."
+    },
+    "body": "BITRA doesn't sell services — it installs capabilities. Each one operates independently or composes with the rest, depending on the moment and the client's technology maturity.",
+    "items": [
+      {
+        "num": "C · 01",
+        "name": "Strategic Direction\n& IT Governance",
+        "desc": "Fractional CTO · annual roadmap · investment evaluation · executive reporting."
+      },
+      {
+        "num": "C · 02",
+        "name": "IT Audit & Architecture",
+        "desc": "360° assessment · networks, security and data · phased target architecture."
+      },
+      {
+        "num": "C · 03",
+        "name": "IT Vendor Governance",
+        "desc": "Contract renegotiation · SLAs with penalties · savings up to 50%."
+      },
+      {
+        "num": "C · 04",
+        "name": "Automation & Integrations",
+        "desc": "N8N · RPA · APIs · ERP/CRM workflows · −30% operational lead times."
+      },
+      {
+        "num": "C · 05",
+        "name": "Data, BI & Predictive Analytics",
+        "desc": "Power BI · executive dashboards · KPIs · predictive models on real data."
+      },
+      {
+        "num": "C · 06",
+        "name": "Cloud · FinOps · Optimization",
+        "desc": "Azure · GCP · governance · 20–40% less in cloud costs."
+      },
+      {
+        "num": "C · 07",
+        "name": "Security & Business Continuity",
+        "desc": "FortiGate · AD · backups · BCP/DRP · identity management · hardening."
+      }
+    ]
+  },
+
+  "metodo": {
+    "tag": "— BITRA OS",
+    "h2": {
+      "line1": "How we work.",
+      "em": "One system, four phases."
+    },
+    "body": "An operating system for digital transformation designed for the speed of the mid-market. No consulting theater — just technical decisions with measurable return.",
+    "fases": [
+      {
+        "step": "Phase · 01",
+        "title": "Executive diagnosis",
+        "desc": "Technology inventory, contracts, dependencies, risks. We quantify the cost of inaction."
+      },
+      {
+        "step": "Phase · 02",
+        "title": "Thesis & roadmap",
+        "desc": "We define prioritized hypotheses with P&L impact, technical sequence and quarterly plan by owner."
+      },
+      {
+        "step": "Phase · 03",
+        "title": "Supervised execution",
+        "desc": "Implementation with our own or existing vendors. Real SLAs, quality control and deliverables."
+      },
+      {
+        "step": "Phase · 04",
+        "title": "Operations & reporting",
+        "desc": "Monthly board committee. Live KPIs. Roadmap re-prioritized against results, not rhetoric."
+      }
+    ]
+  },
+
+  "casos": {
+    "tag": "— Impact cases",
+    "h2": {
+      "line1": "Real work.",
+      "line2": "Measurable",
+      "em": "results"
+    },
+    "body": "A sample of representative projects. Each case reports what changed on the balance sheet — not in the pitch deck. Operational details under NDA.",
+    "featured": {
+      "tag": "CASE · 01 · FEATURED",
+      "value": "28",
+      "unit": "M",
+      "h3": "COP in documented\nsavings.",
+      "desc": "Contract renegotiation & vendor consolidation · 9 months.",
+      "clientsTag": "Clients · Formacol · Contiflex",
+      "stats": [
+        { "label": "New SLAs", "value": "12" },
+        { "label": "Contracts reviewed", "value": "24" },
+        { "label": "Migration downtime", "value": "0" }
+      ]
+    },
+    "items": [
+      {
+        "tag": "Case · 02",
+        "sector": "Professional services",
+        "value": "−34%",
+        "label": "cloud bill · 6 months",
+        "desc": "Azure audit + resource rightsizing · FinOps policies · monthly reports."
+      },
+      {
+        "tag": "Case · 03",
+        "sector": "Financial services",
+        "value": "+41%",
+        "label": "accounting productivity",
+        "desc": "Accounting and logistics automation with N8N · ERP/CRM integrations · intelligent validation workflows."
+      }
+    ]
+  },
+
+  "cta": {
+    "tag": "— Next step",
+    "h2": {
+      "line1": "One conversation.",
+      "em": "One diagnosis.",
+      "line3": "One decision."
+    },
+    "ctaPrimary": "Schedule a call",
+    "ctaSecondary": "See capabilities",
+    "info": [
+      { "k": "Location", "v": "Medellín · Bogotá · Regional operations" },
+      { "k": "Email", "v": "hola@bitra.co" },
+      { "k": "Engagement", "v": "Basic · Plus · Premium · Special project" },
+      { "k": "Confidentiality", "v": "All interactions under standard NDA." }
+    ]
+  },
+
+  "footer": {
+    "brand": "BITRA · Brandbook 2026 · Vol. I",
+    "columns": [
+      {
+        "title": "Brand",
+        "links": ["Manifesto", "Impact cases", "Full brandbook →"]
+      },
+      {
+        "title": "Capabilities",
+        "links": ["Strategic direction", "Audit & architecture", "Cloud & FinOps"]
+      },
+      {
+        "title": "Contact",
+        "links": ["hola@bitra.co", "Schedule a call"]
+      }
+    ],
+    "copyright": "© 2026 BITRA · All rights reserved",
+    "legal": "NIT · Medellín, Colombia"
+  },
+
+  "authModal": {
+    "badge": "— Restricted access",
+    "title": "BITRA Brandbook",
+    "titleEm": "· Vol. I",
+    "body": "Confidential document. Sign in with the email and password we assigned to you.",
+    "close": "Close",
+    "login": {
+      "emailLabel": "Corporate email",
+      "passwordLabel": "Password",
+      "submit": "Sign in",
+      "submitting": "Signing in...",
+      "forgotLink": "Forgot my password",
+      "errorCredentials": "Incorrect credentials. Check your email and password."
+    },
+    "recovery": {
+      "emailLabel": "Corporate email",
+      "submit": "Send link",
+      "submitting": "Sending...",
+      "backLink": "Back to login",
+      "successInfo": "Check your email to reset your password.",
+      "errorSend": "We couldn't send the email. Please try again."
+    }
+  }
+}
