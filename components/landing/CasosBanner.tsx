@@ -67,11 +67,15 @@ export default function CasosBanner() {
 
               <div className="flex items-end gap-6 mb-5">
                 <span
-                  className="font-serif italic leading-none text-voltage-light"
-                  style={{ fontSize: 'clamp(80px, 11vw, 160px)' }}
+                  className="font-serif italic leading-none text-voltage-light tabular-nums"
+                  style={{
+                    fontSize: 'clamp(80px, 11vw, 160px)',
+                    textShadow: '0 0 80px rgba(79,160,181,0.35), 0 0 32px rgba(79,160,181,0.2)',
+                    letterSpacing: '-0.03em',
+                  }}
                 >
                   $<CountUp end={28} duration={1600} />
-                  <sup className="text-[0.35em] align-[0.75em] font-mono not-italic tracking-wider">M</sup>
+                  <sup className="text-[0.32em] align-[0.8em] font-mono not-italic tracking-widest opacity-70">M</sup>
                 </span>
               </div>
 

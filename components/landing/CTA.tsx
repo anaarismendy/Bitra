@@ -11,7 +11,7 @@ export default function CTA() {
   return (
     <section
       id="contacto"
-      className="bg-paper text-ink px-[clamp(24px,5vw,96px)] py-[clamp(80px,12vw,160px)]"
+      className="bg-paper text-ink px-[clamp(24px,5vw,96px)] py-[clamp(112px,16vw,200px)]"
     >
       <div className="max-w-[1400px] grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-16 lg:gap-20 items-start">
 
@@ -69,12 +69,13 @@ export default function CTA() {
             {INFO.map(({ k, v }) => (
               <div
                 key={k}
-                className="grid grid-cols-[130px_1fr] gap-4 py-5 border-b border-black/[0.05]"
+                className="grid grid-cols-[120px_1fr] gap-6 py-5"
+                style={{ borderBottom: '1px solid rgba(11,11,13,0.05)' }}
               >
-                <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-steel/40 pt-0.5">
+                <span className="font-mono text-[9px] tracking-[0.22em] uppercase text-steel/35 pt-0.5">
                   {k}
                 </span>
-                <span className="text-ink/70 text-[14px] leading-[1.6]">{v}</span>
+                <span className="text-ink/65 text-[13.5px] leading-[1.65]">{v}</span>
               </div>
             ))}
 

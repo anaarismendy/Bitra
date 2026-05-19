@@ -68,17 +68,20 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
           /* Live posts layout */
           <div className="flex flex-col">
             {posts.map((post, i) => (
-              <FadeIn key={post._id} delay={i * 80}>
+              <FadeIn key={post._id} delay={i * 90}>
                 <Link
                   href={`/blog/${post.slug.current}`}
-                  className="group grid grid-cols-[100px_1fr_32px] sm:grid-cols-[120px_1fr_32px] gap-6 py-8 border-t border-white/[0.07] items-center hover:pl-2 transition-all duration-400"
+                  className="group grid grid-cols-[112px_1fr_28px] sm:grid-cols-[128px_1fr_28px] gap-6 py-9 border-t border-white/[0.06] items-center relative transition-colors duration-500"
                 >
-                  <span className="font-mono text-[10px] tracking-[0.16em] uppercase text-mist/40">
+                  {/* Left border reveal */}
+                  <span className="absolute left-0 top-0 bottom-0 w-[1.5px] bg-voltage-light origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-400 ease-out" style={{ transitionTimingFunction: 'cubic-bezier(0.16,1,0.3,1)' }} />
+
+                  <span className="font-mono text-[9px] tracking-[0.18em] uppercase text-mist/35 group-hover:text-mist/60 transition-colors duration-500 pl-0 group-hover:pl-3 transition-all duration-400" style={{ transitionTimingFunction: 'cubic-bezier(0.16,1,0.3,1)' }}>
                     {new Date(post.publishedAt).toLocaleDateString('es-CO', { year: 'numeric', month: 'short' })}
                   </span>
-                  <div>
+                  <div className="group-hover:pl-1 transition-all duration-400" style={{ transitionTimingFunction: 'cubic-bezier(0.16,1,0.3,1)' }}>
                     <h3
-                      className="font-medium leading-[1.2] tracking-[-0.015em] group-hover:text-voltage-light transition-colors duration-300"
+                      className="font-medium leading-[1.2] tracking-[-0.018em] group-hover:text-voltage-light transition-colors duration-400"
                       style={{ fontSize: 'clamp(16px, 1.3vw, 20px)' }}
                     >
                       {post.title}
@@ -86,20 +89,20 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
                     {post.tags?.length > 0 && (
                       <div className="flex gap-2 mt-3 flex-wrap">
                         {post.tags.slice(0, 3).map((tag) => (
-                          <span key={tag} className="font-mono text-[9px] tracking-[0.16em] uppercase px-2 py-1 border border-white/[0.08] text-mist/50">
+                          <span key={tag} className="font-mono text-[9px] tracking-[0.18em] uppercase px-2 py-1 border border-white/[0.07] text-mist/40 group-hover:border-voltage-light/20 group-hover:text-mist/60 transition-all duration-400">
                             {tag}
                           </span>
                         ))}
                       </div>
                     )}
                   </div>
-                  <span className="font-serif italic text-xl text-mist/30 group-hover:text-voltage-light group-hover:translate-x-0.5 transition-all duration-300 justify-self-end">
+                  <span className="font-serif italic text-lg text-mist/25 group-hover:text-voltage-light group-hover:translate-x-1 transition-all duration-400 justify-self-end" style={{ transitionTimingFunction: 'cubic-bezier(0.16,1,0.3,1)' }}>
                     →
                   </span>
                 </Link>
               </FadeIn>
             ))}
-            <div className="border-t border-white/[0.07]" />
+            <div className="border-t border-white/[0.06]" />
           </div>
         ) : (
           /* Placeholder: editorial cards */

@@ -14,12 +14,25 @@ export default function Hero() {
     >
       <ParticleCanvas />
 
-      {/* Atmospheric gradients */}
+      {/* Atmospheric gradients — layer 1 */}
       <div
         className="absolute inset-0 z-[1] pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 65% 55% at 78% 35%, rgba(31,100,120,0.13) 0%, transparent 60%), radial-gradient(ellipse 45% 40% at 15% 75%, rgba(79,160,181,0.07) 0%, transparent 65%)',
+            'radial-gradient(ellipse 65% 55% at 78% 35%, rgba(31,100,120,0.11) 0%, transparent 62%)',
+          animation: 'atmosphericDrift 28s ease-in-out infinite reverse',
+          willChange: 'transform',
+        }}
+      />
+      {/* Atmospheric gradients — layer 2 */}
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 40% 35% at 12% 78%, rgba(79,160,181,0.06) 0%, transparent 65%)',
+          animation: 'atmosphericDrift 34s ease-in-out infinite',
+          willChange: 'transform',
+          animationDelay: '-11s',
         }}
       />
 
@@ -27,10 +40,16 @@ export default function Hero() {
 
         {/* ── Left ── */}
         <div className="relative">
-          {/* Atmospheric glow behind headline */}
+          {/* Atmospheric glow — slow drift */}
           <div
-            className="absolute -top-16 -left-8 w-[520px] h-[300px] pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse 70% 60% at 30% 40%, rgba(31,100,120,0.12) 0%, transparent 70%)', filter: 'blur(40px)' }}
+            className="absolute -top-16 -left-8 w-[560px] h-[320px] pointer-events-none"
+            style={{
+              background: 'radial-gradient(ellipse 70% 60% at 40% 45%, rgba(31,100,120,0.11) 0%, transparent 70%)',
+              filter: 'blur(48px)',
+              animation: 'atmosphericDrift 22s ease-in-out infinite',
+              willChange: 'transform',
+              transformOrigin: 'center center',
+            }}
           />
           <div className="inline-flex items-center gap-3 font-mono text-[10px] tracking-[0.22em] uppercase text-mist mb-9 relative z-[1]">
             <span className="w-1.5 h-1.5 rounded-full bg-voltage-light" />

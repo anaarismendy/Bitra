@@ -59,10 +59,10 @@ export default function Navbar({ onAccessClick }: NavbarProps) {
             <a
               key={item.label}
               href={item.href}
-              className="relative font-mono text-[11px] tracking-[0.12em] uppercase text-mist hover:text-bone transition-colors duration-300 group"
+              className="relative font-mono text-[11px] tracking-[0.12em] uppercase text-mist/70 hover:text-bone transition-colors duration-300 group py-1"
             >
               {item.label}
-              <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-voltage-light group-hover:w-full transition-all duration-300" />
+              <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-voltage-light group-hover:w-full transition-all duration-400 opacity-80" style={{ transitionTimingFunction: 'cubic-bezier(0.16,1,0.3,1)' }} />
             </a>
           ))}
         </div>

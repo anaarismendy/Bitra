@@ -27,9 +27,15 @@
   /* ─── Grid ─── */
   --width-grid: 1440px;
 
-  /* ─── Easing ─── */
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  /* ─── Motion system ─── */
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-premium: cubic-bezier(0.4, 0, 1, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-micro: 150ms;
+  --dur-standard: 550ms;
+  --dur-reveal: 800ms;
+  --dur-cinematic: 1600ms;
 
   /* ─── Shadows ─── */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.45);
@@ -69,6 +75,10 @@ h1, h2, h3, h4 {
   font-family: var(--font-display);
   text-wrap: balance;
   font-optical-sizing: auto;
+}
+
+blockquote {
+  text-wrap: balance;
 }
 
 /* ─── Noise overlay ─── */
@@ -113,8 +123,8 @@ body::after {
 
 /* ─── Keyframes ─── */
 @keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(16px) scale(0.996); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @keyframes fadeIn {
@@ -127,17 +137,47 @@ body::after {
   50%       { opacity: 0.4; }
 }
 
-@keyframes railGlow {
-  0%, 100% { opacity: 0.6; }
-  50%       { opacity: 1; }
+/* Capacidades panel — staggered child reveal */
+@keyframes panelItemEnter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cap-panel > *:nth-child(1) {
+  animation: panelItemEnter var(--dur-standard) 0ms var(--ease-premium) both;
+}
+.cap-panel > *:nth-child(2) {
+  animation: panelItemEnter var(--dur-standard) 75ms var(--ease-premium) both;
+}
+.cap-panel > *:nth-child(3) {
+  animation: panelItemEnter var(--dur-standard) 160ms var(--ease-premium) both;
+}
+.cap-panel > *:nth-child(4) {
+  animation: panelItemEnter var(--dur-standard) 270ms var(--ease-premium) both;
+}
+.cap-panel > *:nth-child(5) {
+  animation: panelItemEnter var(--dur-standard) 390ms var(--ease-premium) both;
+}
+
+/* Atmospheric drift — used on glow blobs */
+@keyframes atmosphericDrift {
+  0%, 100% { transform: scale(1) translate(0px, 0px); }
+  33%       { transform: scale(1.05) translate(8px, -12px); }
+  66%       { transform: scale(0.97) translate(-6px, 7px); }
 }
 
 .animate-fade-slide {
-  animation: fadeSlideUp 500ms var(--ease-out-expo) forwards;
+  animation: fadeSlideUp 500ms var(--ease-premium) forwards;
 }
 
 .animate-fade {
-  animation: fadeIn 400ms var(--ease-out-expo) forwards;
+  animation: fadeIn 400ms var(--ease-premium) forwards;
 }
 
 /* ─── Reduced motion ─── */

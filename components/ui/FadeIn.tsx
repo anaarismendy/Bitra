@@ -15,7 +15,7 @@ export default function FadeIn({
   delay = 0,
   className = '',
   style,
-  distance = 18,
+  distance = 16,
 }: FadeInProps) {
   const ref = useRef<HTMLDivElement>(null)
 
@@ -32,24 +32,32 @@ export default function FadeIn({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.style.transition = `opacity 700ms ${delay}ms cubic-bezier(0.16,1,0.3,1), transform 700ms ${delay}ms cubic-bezier(0.16,1,0.3,1)`
+          el.style.transition = [
+            `opacity 800ms ${delay}ms cubic-bezier(0.16,1,0.3,1)`,
+            `transform 800ms ${delay}ms cubic-bezier(0.16,1,0.3,1)`,
+          ].join(', ')
           el.style.opacity = '1'
-          el.style.transform = 'translateY(0px)'
+          el.style.transform = 'none'
           observer.disconnect()
         }
       },
-      { threshold: 0.08 }
+      { threshold: 0.06, rootMargin: '0px 0px -40px 0px' }
     )
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [delay, distance])
+  }, [delay])
 
   return (
     <div
       ref={ref}
       className={className}
-      style={{ opacity: 0, transform: `translateY(${distance}px)`, ...style }}
+      style={{
+        opacity: 0,
+        transform: `translateY(${distance}px) scale(0.997)`,
+        willChange: 'opacity, transform',
+        ...style,
+      }}
     >
       {children}
     </div>
