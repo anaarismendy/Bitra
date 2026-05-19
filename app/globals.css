@@ -6,37 +6,37 @@
 
 @theme {
   /* ─── Color palette ─── */
-  --color-ink:           #0B0B0D;
-  --color-carbon:        #111116;
-  --color-graphite:      #1D1D22;
-  --color-charcoal:      #26262D;
-  --color-steel:         #47474F;
-  --color-slate:         #676772;
-  --color-mist:          #96969F;
-  --color-fog:           #C0C0C8;
-  --color-bone:          #F0EDE4;
-  --color-paper:         #F7F7F4;
+  --color-ink:           #000000;
+  --color-carbon:        #080808;
+  --color-graphite:      #101010;
+  --color-charcoal:      #181818;
+  --color-steel:         #404040;
+  --color-slate:         #585858;
+  --color-mist:          #808080;
+  --color-fog:           #ABABAB;
+  --color-bone:          #F2F2F2;
+  --color-paper:         #F9F9F9;
 
-  --color-voltage:       #1C5F74;
-  --color-voltage-dark:  #124558;
-  --color-voltage-mid:   #29788F;
-  --color-voltage-light: #4B9DB0;
-  --color-voltage-pale:  #A5D2DF;
-  --color-signal:        #FF6A3D;
+  --color-voltage:       #1A6478;
+  --color-voltage-dark:  #0F4558;
+  --color-voltage-mid:   #2688A0;
+  --color-voltage-light: #5CD5EC;
+  --color-voltage-pale:  #AAEAF6;
+  --color-signal:        #FF5533;
 
   /* ─── Rule/separator colors (usable as border-rule-*) ─── */
-  --color-rule-ghost:    rgba(255, 255, 255, 0.03);
-  --color-rule-subtle:   rgba(255, 255, 255, 0.055);
-  --color-rule-soft:     rgba(255, 255, 255, 0.08);
-  --color-rule-medium:   rgba(255, 255, 255, 0.115);
-  --color-rule-strong:   rgba(255, 255, 255, 0.18);
-  --color-rule-glow:     rgba(75, 157, 176, 0.32);
+  --color-rule-ghost:    rgba(255, 255, 255, 0.04);
+  --color-rule-subtle:   rgba(255, 255, 255, 0.07);
+  --color-rule-soft:     rgba(255, 255, 255, 0.10);
+  --color-rule-medium:   rgba(255, 255, 255, 0.14);
+  --color-rule-strong:   rgba(255, 255, 255, 0.22);
+  --color-rule-glow:     rgba(92, 213, 236, 0.35);
 
   /* Light-section separators */
-  --color-rule-light-ghost:  rgba(11, 11, 13, 0.04);
-  --color-rule-light-subtle: rgba(11, 11, 13, 0.065);
-  --color-rule-light-soft:   rgba(11, 11, 13, 0.09);
-  --color-rule-light-medium: rgba(11, 11, 13, 0.13);
+  --color-rule-light-ghost:  rgba(0, 0, 0, 0.04);
+  --color-rule-light-subtle: rgba(0, 0, 0, 0.07);
+  --color-rule-light-soft:   rgba(0, 0, 0, 0.10);
+  --color-rule-light-medium: rgba(0, 0, 0, 0.15);
 
   /* ─── Typography ─── */
   --font-display: var(--font-syne), 'Syne', system-ui, sans-serif;
@@ -79,26 +79,26 @@
   --shadow-depth:    0 12px 40px rgba(0,0,0,0.46), 0 4px 12px rgba(0,0,0,0.22);
   --shadow-floating: 0 24px 64px rgba(0,0,0,0.56), 0 8px 20px rgba(0,0,0,0.28);
 
-  --shadow-glow-xs:  0 0 12px rgba(75,157,176,0.12);
-  --shadow-glow-sm:  0 0 24px rgba(75,157,176,0.18), 0 0 6px rgba(75,157,176,0.09);
-  --shadow-glow:     0 0 40px rgba(75,157,176,0.22), 0 0 12px rgba(75,157,176,0.10);
-  --shadow-glow-lg:  0 0 80px rgba(75,157,176,0.28), 0 0 24px rgba(75,157,176,0.13);
+  --shadow-glow-xs:  0 0 16px rgba(92,213,236,0.15);
+  --shadow-glow-sm:  0 0 32px rgba(92,213,236,0.22), 0 0 8px rgba(92,213,236,0.10);
+  --shadow-glow:     0 0 48px rgba(92,213,236,0.26), 0 0 14px rgba(92,213,236,0.12);
+  --shadow-glow-lg:  0 0 96px rgba(92,213,236,0.32), 0 0 28px rgba(92,213,236,0.15);
 
   --shadow-inner-top: inset 0 1px 0 rgba(255,255,255,0.055);
   --shadow-inner:     inset 0 1px 0 rgba(255,255,255,0.055), inset 0 -1px 0 rgba(0,0,0,0.12);
 
   /* ─── Border rgba values (for use in border shorthand) ─── */
-  --border-ghost:   rgba(255,255,255,0.03);
-  --border-subtle:  rgba(255,255,255,0.055);
-  --border-soft:    rgba(255,255,255,0.08);
-  --border-medium:  rgba(255,255,255,0.115);
-  --border-strong:  rgba(255,255,255,0.18);
-  --border-glow:    rgba(75,157,176,0.35);
+  --border-ghost:   rgba(255,255,255,0.04);
+  --border-subtle:  rgba(255,255,255,0.07);
+  --border-soft:    rgba(255,255,255,0.10);
+  --border-medium:  rgba(255,255,255,0.15);
+  --border-strong:  rgba(255,255,255,0.24);
+  --border-glow:    rgba(92,213,236,0.38);
 
-  --border-light-ghost:  rgba(11,11,13,0.04);
-  --border-light-subtle: rgba(11,11,13,0.065);
-  --border-light-soft:   rgba(11,11,13,0.09);
-  --border-light-medium: rgba(11,11,13,0.13);
+  --border-light-ghost:  rgba(0,0,0,0.04);
+  --border-light-subtle: rgba(0,0,0,0.07);
+  --border-light-soft:   rgba(0,0,0,0.10);
+  --border-light-medium: rgba(0,0,0,0.15);
 }
 
 /* ═══════════════════════════════════════════════
@@ -197,9 +197,11 @@ body::after {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255,255,255,0.16);
 }
-/* Standard property */
-scrollbar-color: rgba(255,255,255,0.08) transparent;
-scrollbar-width: thin;
+/* Standard scrollbar properties — must be inside a selector */
+html {
+  scrollbar-color: rgba(255,255,255,0.08) transparent;
+  scrollbar-width: thin;
+}
 
 /* ═══════════════════════════════════════════════
    COMPONENT CLASSES — semantic, reusable
@@ -245,28 +247,28 @@ scrollbar-width: thin;
   transform: translateY(0.5px);
 }
 
-/* ─── Primary button — dark fill with hover glow ─── */
+/* ─── Primary button — bordered → accent fill on hover ─── */
 .btn-primary {
-  background-color: var(--color-ink);
+  background-color: transparent;
   color: var(--color-bone);
   border: 1px solid var(--border-medium);
-  box-shadow: var(--shadow-inner-top), var(--shadow-soft);
   padding: 14px 24px;
+  transition:
+    background-color var(--dur-fast) var(--ease-snappy),
+    border-color     var(--dur-fast) var(--ease-snappy),
+    color            var(--dur-fast) var(--ease-snappy),
+    box-shadow       var(--dur-medium) var(--ease-smooth);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-voltage);
-  border-color: rgba(75,157,176,0.3);
-  box-shadow: var(--shadow-inner-top), var(--shadow-glow-sm), 0 4px 16px rgba(0,0,0,0.3);
-  color: var(--color-bone);
-}
-
-.btn-primary:hover::before {
-  opacity: 1;
+  background-color: var(--color-voltage-light);
+  border-color: var(--color-voltage-light);
+  color: #000000;
+  box-shadow: 0 0 32px rgba(92,213,236,0.28);
 }
 
 .btn-primary:active {
-  box-shadow: var(--shadow-inner), var(--shadow-glow-xs);
+  box-shadow: 0 0 14px rgba(92,213,236,0.15);
 }
 
 /* ─── Secondary button — bordered ─── */
@@ -356,23 +358,18 @@ scrollbar-width: thin;
 /* ─── Card surfaces ─── */
 
 .card-dark {
-  background: linear-gradient(
-    160deg,
-    rgba(255,255,255,0.030) 0%,
-    rgba(255,255,255,0.012) 100%
-  );
-  border: 1px solid var(--border-soft);
-  box-shadow: var(--shadow-inner-top), var(--shadow-card);
+  background: rgba(255,255,255,0.018);
+  border: 1px solid var(--border-subtle);
   transition:
-    box-shadow      var(--dur-medium) var(--ease-smooth),
-    border-color    var(--dur-medium) var(--ease-smooth),
-    transform       var(--dur-medium) var(--ease-smooth);
+    background-color var(--dur-medium) var(--ease-smooth),
+    border-color     var(--dur-medium) var(--ease-smooth),
+    transform        var(--dur-medium) var(--ease-smooth);
 }
 
 .card-dark:hover {
-  box-shadow: var(--shadow-inner-top), var(--shadow-depth), var(--shadow-glow-xs);
-  border-color: var(--border-medium);
-  transform: translateY(-2px);
+  background: rgba(255,255,255,0.030);
+  border-color: var(--border-soft);
+  transform: translateY(-1px);
 }
 
 .card-light {

@@ -17,16 +17,29 @@ const NAV_LINKS = [
 export default function Navbar({ onAccessClick }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
   const navRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    const onScroll = () => {
+    const sectionIds = NAV_LINKS.filter(l => l.href.startsWith('#')).map(l => l.href.slice(1))
+
+    const update = () => {
       const isScrolled = window.scrollY > 48
       setScrolled(isScrolled)
       navRef.current?.classList.toggle('scrolled', isScrolled)
+
+      const scrollY = window.scrollY + 120
+      let current = ''
+      for (const id of sectionIds) {
+        const el = document.getElementById(id)
+        if (el && el.offsetTop <= scrollY) current = id
+      }
+      setActiveSection(current)
     }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+
+    window.addEventListener('scroll', update, { passive: true })
+    update()
+    return () => window.removeEventListener('scroll', update)
   }, [])
 
   useEffect(() => {
@@ -44,26 +57,51 @@ export default function Navbar({ onAccessClick }: NavbarProps) {
       >
         <a
           href="/"
-          className="flex items-center gap-2.5 font-mono text-[13px] tracking-[0.16em] uppercase font-medium text-bone hover:text-voltage-light transition-colors duration-300"
+          className="flex items-center gap-3 font-mono text-[13px] tracking-[0.16em] uppercase font-medium text-bone hover:text-voltage-light transition-colors duration-300 group"
         >
-          <span className={`rounded-full bg-voltage-light transition-all duration-500 gpu-layer ${scrolled ? 'w-1.5 h-1.5' : 'w-2 h-2'}`} />
+          {/* Logo mark — ring + core dot */}
+          <span className="relative flex-shrink-0 w-5 h-5 flex items-center justify-center">
+            {/* Outer ring — pulse animation */}
+            <span
+              className="absolute w-full h-full rounded-full border border-voltage-light/25 animate-ping"
+              style={{ animationDuration: '2.6s', animationTimingFunction: 'ease-out' }}
+            />
+            {/* Static ring */}
+            <span
+              className={`absolute rounded-full border border-voltage-light/40 transition-all duration-500 ${scrolled ? 'w-3 h-3' : 'w-4 h-4'}`}
+            />
+            {/* Core dot */}
+            <span
+              className={`relative rounded-full bg-voltage-light transition-all duration-500 ${scrolled ? 'w-1.5 h-1.5' : 'w-2 h-2'}`}
+            />
+          </span>
           BITRA
         </a>
 
         <div className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="relative font-mono text-[11px] tracking-[0.12em] uppercase text-mist/70 hover:text-bone transition-colors duration-300 group py-1"
-            >
-              {item.label}
-              <span
-                className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-voltage-light group-hover:w-full opacity-80"
-                style={{ transition: `width 400ms cubic-bezier(0.16,1,0.3,1)` }}
-              />
-            </a>
-          ))}
+          {NAV_LINKS.map((item) => {
+            const sectionId = item.href.startsWith('#') ? item.href.slice(1) : null
+            const isActive = sectionId !== null && activeSection === sectionId
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                className={`relative font-mono text-[11px] tracking-[0.12em] uppercase transition-colors duration-300 group py-1 ${
+                  isActive ? 'text-bone' : 'text-mist/70 hover:text-bone'
+                }`}
+              >
+                {item.label}
+                <span
+                  className={`absolute bottom-0 left-0 h-[1.5px] bg-voltage-light ${isActive ? '' : 'w-0 group-hover:w-full'}`}
+                  style={{
+                    width: isActive ? '100%' : undefined,
+                    opacity: 0.9,
+                    transition: `width 400ms cubic-bezier(0.16,1,0.3,1)`,
+                  }}
+                />
+              </a>
+            )
+          })}
         </div>
 
         <div className="flex items-center gap-4">

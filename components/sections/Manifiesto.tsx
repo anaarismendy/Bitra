@@ -1,12 +1,14 @@
 import FadeIn from '@/components/ui/FadeIn'
+import Container from '@/components/common/Container'
 
 export default function Manifiesto() {
   return (
     <section
       id="manifiesto"
-      className="bg-bone text-ink px-[clamp(24px,5vw,96px)] py-[clamp(112px,15vw,200px)]"
+      className="bg-bone text-ink py-[clamp(96px,12vw,160px)]"
+      style={{ borderBottom: '1px solid rgba(0,0,0,0.06)' }}
     >
-      <div className="max-w-[1400px]">
+      <Container>
         <FadeIn>
           <span className="inline-flex items-center gap-2.5 font-mono text-[11px] tracking-[0.2em] uppercase text-voltage">
             <span className="w-1.5 h-1.5 rounded-full bg-voltage" />
@@ -49,7 +51,7 @@ export default function Manifiesto() {
             </a>
           </div>
         </FadeIn>
-      </div>
+      </Container>
     </section>
   )
 }
